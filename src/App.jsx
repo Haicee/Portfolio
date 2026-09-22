@@ -1,122 +1,48 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import React from "react";
+import { Sidebar } from "./components/layout/Sidebar";
+import { MobileHeader } from "./components/layout/MobileHeader";
+import { Footer } from "./components/layout/Footer";
+import { Hero } from "./components/sections/Hero";
+import { About } from "./components/sections/About";
+import { Skills } from "./components/sections/Skills";
+import { Certificates } from "./components/sections/Certificates";
+import { Projects } from "./components/sections/Projects";
+import { Contact } from "./components/sections/Contact";
+import { useActiveSection } from "./hooks/useActiveSection";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const sectionIds = ["hero", "about", "skills", "certificates", "experience", "contact"];
+  const activeSection = useActiveSection(sectionIds, 150);
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="min-h-screen bg-[#0b0f17] text-slate-200 selection:bg-cyan-500 selection:text-white">
+      {/* Subtle Dot Grid Background */}
+      <div className="fixed inset-0 pointer-events-none dot-grid opacity-30 z-0"></div>
 
-      <div className="ticks"></div>
+      {/* Ambient Lighting Orbs */}
+      <div className="fixed top-0 right-1/4 w-[500px] h-[500px] bg-cyan-600/5 rounded-full blur-[140px] pointer-events-none z-0"></div>
+      <div className="fixed bottom-1/4 left-1/3 w-[600px] h-[600px] bg-indigo-600/5 rounded-full blur-[160px] pointer-events-none z-0"></div>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+      {/* Desktop Fixed Left Sidebar */}
+      <Sidebar activeSection={activeSection} />
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      {/* Mobile Top Header */}
+      <MobileHeader activeSection={activeSection} />
+
+      {/* Main Content Area */}
+      <div className="relative z-10 lg:pl-64 transition-all">
+        <main className="mx-auto max-w-5xl px-4 sm:px-8 md:px-12 lg:px-16 pt-2 pb-16">
+          <Hero />
+          <About />
+          <Skills />
+          <Certificates />
+          <Projects />
+          <Contact />
+          <Footer />
+        </main>
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
