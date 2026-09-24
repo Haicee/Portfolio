@@ -1,3 +1,7 @@
+import hackathonCertImg from '../assets/certificates/Hackaton certificate.png';
+import psitsCertImg from '../assets/certificates/PSITS certificate.png';
+import tesdaCertImg from '../assets/certificates/Tesda certificate.png';
+
 export const personalInfo = {
   name: "Marc S.",
   title: "Junior Full Stack Developer",
@@ -89,36 +93,39 @@ export const skillGroups = [
 export const certificates = [
   {
     id: 1,
-    title: "Certificate of Academic & Technical Excellence",
-    issuer: "Commission on Higher Education / University",
+    title: "TESDA Technical & Vocational Training Certificate",
+    issuer: "Technical Education and Skills Development Authority (TESDA)",
     date: "2024",
-    orientation: "portrait",
+    image: tesdaCertImg,
+    orientation: "landscape",
     credentialUrl: "#",
-    description: "Awarded for exceptional capstone execution and technical aptitude in software systems development.",
-    badge: "Verified Credential",
-    tags: ["Software Engineering", "Full Stack Development", "Honors"]
+    description: "Official national credential certifying proficiency and technical expertise in software and system development.",
+    badge: "TESDA Accredited",
+    tags: ["TESDA", "Technical Training", "Certified"]
   },
   {
     id: 2,
-    title: "Advanced Web & Application Development Certification",
-    issuer: "Tech Accreditation Institute",
+    title: "PSITS Technical & Student Assembly Certificate",
+    issuer: "Philippine Society of Information Technology Students (PSITS)",
     date: "2024",
+    image: psitsCertImg,
     orientation: "landscape",
     credentialUrl: "#",
-    description: "Comprehensive qualification covering modern client-server architecture, database modeling, and REST APIs.",
-    badge: "Certified Developer",
-    tags: ["REST APIs", "Modern Web", "Architecture"]
+    description: "Official certificate of active involvement, technical participation, and academic achievement in PSITS activities.",
+    badge: "PSITS Certified",
+    tags: ["PSITS", "IT Community", "Technical Skills"]
   },
   {
     id: 3,
-    title: "Mobile App Development with Flutter & Firebase",
-    issuer: "Professional Software Academy",
+    title: "Hackathon Competition Certificate of Achievement",
+    issuer: "Hackathon Organizer / Tech Event",
     date: "2024",
+    image: hackathonCertImg,
     orientation: "landscape",
     credentialUrl: "#",
-    description: "Intensive training in cross-platform mobile app creation, state management, and real-time backend synchronization.",
-    badge: "Mobile Certified",
-    tags: ["Flutter", "Dart", "Firebase Cloud"]
+    description: "Awarded in recognition of outstanding performance, innovation, and teamwork in software development during the hackathon competition.",
+    badge: "Hackathon Participant",
+    tags: ["Hackathon", "Full Stack Development", "Innovation"]
   }
 ];
 
@@ -127,6 +134,9 @@ export const projects = [
     id: 1,
     title: "Emergency Response & Real-Time Dispatch System",
     type: "mobile",
+    category: "MOBILE",
+    year: "2024",
+    github: "https://github.com",
     badge: "Featured Mobile App",
     role: "Lead Mobile Developer",
     tools: ["Flutter", "Dart", "Firebase", "Google Maps API", "Cloud Firestore"],
@@ -149,6 +159,9 @@ export const projects = [
     id: 2,
     title: "Enterprise Administrative Portal & Verification System",
     type: "web",
+    category: "WEB",
+    year: "2024",
+    github: "https://github.com",
     badge: "Web Platform",
     role: "Full Stack Web Developer",
     tools: ["React", "Laravel", "MySQL", "Tailwind CSS", "RESTful API"],
@@ -172,6 +185,9 @@ export const projects = [
     id: 3,
     title: "Integrated Records & Activity Monitoring Dashboard",
     type: "web",
+    category: "WEB",
+    year: "2023",
+    github: "https://github.com",
     badge: "Web Application",
     role: "Full Stack Engineer",
     tools: ["React", "Tailwind CSS", "PHP", "PostgreSQL", "Chart.js"],
@@ -195,6 +211,9 @@ export const projects = [
     id: 4,
     title: "Digital Certificate Issuance & QR Verification Platform",
     type: "web",
+    category: "WEB",
+    year: "2023",
+    github: "https://github.com",
     badge: "Security & Verification",
     role: "Lead Full Stack Developer",
     tools: ["React", "Laravel", "QR Engine", "MySQL", "Tailwind CSS"],
@@ -218,6 +237,9 @@ export const projects = [
     id: 5,
     title: "EcoSplash: Interactive Environmental Educational Game",
     type: "interactive",
+    category: "INTERACTIVE",
+    year: "2023",
+    github: "https://github.com",
     badge: "Interactive Game & Web",
     role: "Game Developer & UI Designer",
     tools: ["JavaScript", "HTML5 Canvas", "CSS3 Animations", "Web Audio API"],
@@ -241,6 +263,9 @@ export const projects = [
     id: 6,
     title: "EcoSplash Mobile Companion & Habit Tracker",
     type: "mobile",
+    category: "MOBILE",
+    year: "2023",
+    github: "https://github.com",
     badge: "Mobile Application",
     role: "Mobile Developer",
     tools: ["Flutter", "Dart", "Firebase Auth", "Cloud Firestore", "Local Notifications"],
@@ -263,6 +288,9 @@ export const projects = [
     id: 7,
     title: "Next-Gen 3D Interactive Showcase & Product Portfolio",
     type: "web",
+    category: "WEB",
+    year: "2024",
+    github: "https://github.com",
     badge: "3D & Advanced UI",
     role: "Frontend Engineer",
     tools: ["React", "Three.js / CSS 3D", "Tailwind CSS", "Vite"],
@@ -281,3 +309,5 @@ export const projects = [
     ]
   }
 ];
+
+

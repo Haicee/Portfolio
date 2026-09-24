@@ -2,13 +2,22 @@ import React, { useState } from "react";
 import { navItems, personalInfo } from "../../data/portfolioData";
 import { Menu, X, Mail } from "lucide-react";
 
-export function MobileHeader({ activeSection }) {
+export function MobileHeader({ activeSection, onNavClick }) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleLinkClick = () => {
+    setIsOpen(false);
+    if (onNavClick) onNavClick();
+  };
 
   return (
     <>
       <header className="sticky top-0 z-40 flex items-center justify-between border-b border-slate-800/80 bg-[#0b0f17]/90 px-6 py-4 backdrop-blur-md lg:hidden">
-        <a href="#hero" className="font-mono text-base font-bold text-slate-100">
+        <a 
+          href="#hero" 
+          onClick={handleLinkClick}
+          className="font-mono text-base font-bold text-slate-100"
+        >
           <span>{personalInfo.name}</span>
           <span className="text-cyan-400 font-normal">/&gt;</span>
         </a>
@@ -49,7 +58,7 @@ export function MobileHeader({ activeSection }) {
               <a
                 key={item.id}
                 href={`#${item.id}`}
-                onClick={() => setIsOpen(false)}
+                onClick={handleLinkClick}
                 className={`flex items-center justify-between py-2 text-base ${
                   activeSection === item.id 
                     ? "text-cyan-400 font-bold" 

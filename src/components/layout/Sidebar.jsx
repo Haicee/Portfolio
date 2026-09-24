@@ -3,7 +3,7 @@ import { navItems, personalInfo } from "../../data/portfolioData";
 import { Mail, ArrowUpRight } from "lucide-react";
 import { GithubIcon, LinkedinIcon, FacebookIcon, TwitterIcon } from "../ui/SocialIcons";
 
-export function Sidebar({ activeSection }) {
+export function Sidebar({ activeSection, onNavClick }) {
   const getSocialIcon = (iconName) => {
     switch (iconName) {
       case "Github": return <GithubIcon className="w-4 h-4" />;
@@ -20,6 +20,7 @@ export function Sidebar({ activeSection }) {
       <div>
         <a 
           href="#hero" 
+          onClick={onNavClick}
           className="group block font-mono text-lg font-bold tracking-tight text-slate-100 hover:text-cyan-400 transition-colors"
         >
           <span>{personalInfo.name}</span>
@@ -47,6 +48,7 @@ export function Sidebar({ activeSection }) {
               <a
                 key={item.id}
                 href={`#${item.id}`}
+                onClick={onNavClick}
                 className={`group flex items-center justify-between py-2 px-3 rounded-lg transition-all duration-200 ${
                   isActive 
                     ? "bg-cyan-500/10 text-cyan-300 font-semibold border-l-2 border-cyan-400" 
