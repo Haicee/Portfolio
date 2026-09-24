@@ -1,111 +1,98 @@
 import React, { useState } from "react";
-import { skills } from "../../data/portfolioData";
+import { skillGroups } from "../../data/portfolioData";
 import { SectionHeader } from "../ui/SectionHeader";
-import { 
-  Code2, Smartphone, Database, Palette, 
-  Terminal, Globe, Cpu, Wrench
-} from "lucide-react";
+
+const LEVEL_STYLES = {
+  Advanced: "bg-cyan-500/10 text-cyan-400 border-cyan-500/25",
+  Intermediate: "bg-indigo-500/10 text-indigo-400 border-indigo-500/25",
+  Beginner: "bg-slate-700/40 text-slate-400 border-slate-600/30",
+};
+
+const LEVEL_SHORT = {
+  Advanced: "Adv",
+  Intermediate: "Mid",
+  Beginner: "Jr",
+};
 
 export function Skills() {
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [activeFilter, setActiveFilter] = useState("All");
 
-  const categories = ["All", "Frontend", "Mobile", "Backend", "Language", "Design", "Tooling"];
+  const filterLabels = ["All", ...skillGroups.map((g) => g.label)];
 
-  const filteredSkills = selectedCategory === "All" 
-    ? skills 
-    : skills.filter(s => s.category.toLowerCase().includes(selectedCategory.toLowerCase()));
-
-  const getTechColor = (name) => {
-    switch (name.toLowerCase()) {
-      case "react": return "text-cyan-400 group-hover:border-cyan-400/50 group-hover:bg-cyan-500/10";
-      case "flutter": return "text-sky-400 group-hover:border-sky-400/50 group-hover:bg-sky-500/10";
-      case "laravel": return "text-red-500 group-hover:border-red-500/50 group-hover:bg-red-500/10";
-      case "tailwind css": return "text-teal-400 group-hover:border-teal-400/50 group-hover:bg-teal-500/10";
-      case "html5": return "text-orange-500 group-hover:border-orange-500/50 group-hover:bg-orange-500/10";
-      case "css3": return "text-blue-400 group-hover:border-blue-400/50 group-hover:bg-blue-500/10";
-      case "javascript": return "text-yellow-400 group-hover:border-yellow-400/50 group-hover:bg-yellow-500/10";
-      case "firebase": return "text-amber-500 group-hover:border-amber-500/50 group-hover:bg-amber-500/10";
-      case "python": return "text-emerald-400 group-hover:border-emerald-400/50 group-hover:bg-emerald-500/10";
-      case "figma": return "text-purple-400 group-hover:border-purple-400/50 group-hover:bg-purple-500/10";
-      case "android studio": return "text-green-400 group-hover:border-green-400/50 group-hover:bg-green-500/10";
-      case "git & github": return "text-rose-400 group-hover:border-rose-400/50 group-hover:bg-rose-500/10";
-      default: return "text-slate-300 group-hover:border-slate-500 group-hover:bg-slate-800";
-    }
-  };
-
-  const getTechIcon = (name) => {
-    switch (name.toLowerCase()) {
-      case "react": return <Globe className="w-6 h-6" />;
-      case "flutter": return <Smartphone className="w-6 h-6" />;
-      case "laravel": return <Database className="w-6 h-6" />;
-      case "tailwind css": return <Palette className="w-6 h-6" />;
-      case "html5": return <Code2 className="w-6 h-6" />;
-      case "css3": return <Palette className="w-6 h-6" />;
-      case "javascript": return <Terminal className="w-6 h-6" />;
-      case "firebase": return <Database className="w-6 h-6" />;
-      case "python": return <Cpu className="w-6 h-6" />;
-      case "figma": return <Palette className="w-6 h-6" />;
-      case "android studio": return <Smartphone className="w-6 h-6" />;
-      case "git & github": return <Wrench className="w-6 h-6" />;
-      default: return <Code2 className="w-6 h-6" />;
-    }
-  };
+  const visibleGroups =
+    activeFilter === "All"
+      ? skillGroups
+      : skillGroups.filter((g) => g.label === activeFilter);
 
   return (
     <section id="skills" className="py-14 border-t border-slate-800/80">
-      <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-4">
-        <SectionHeader 
-          number="02" 
-          title="my skills" 
-          subtitle="Core technologies, frameworks, and developer tools in my tech stack."
+      {/* Header Row */}
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-10">
+        <SectionHeader
+          number="02"
+          title="Tech Stack"
+          subtitle="Every language, framework, and tool I rely on to turn concepts into production-ready software."
         />
 
         {/* Filter Pills */}
-        <div className="flex flex-wrap gap-1.5 font-mono text-[11px] mb-4">
-          {categories.map((cat) => (
+        <div className="flex flex-wrap gap-1.5 font-mono text-[11px] sm:justify-end">
+          {filterLabels.map((label) => (
             <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-2.5 py-1 rounded-md transition-all ${
-                selectedCategory === cat
-                  ? "bg-cyan-500 text-slate-950 font-bold"
-                  : "bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700"
-              }`}
+              key={label}
+              onClick={() => setActiveFilter(label)}
+              className={`px-2.5 py-1 rounded-md border transition-all duration-200 ${activeFilter === label
+                ? "bg-cyan-500 border-cyan-500 text-slate-950 font-bold"
+                : "bg-transparent border-slate-700 text-slate-400 hover:border-slate-500 hover:text-slate-200"
+                }`}
             >
-              {cat}
+              {label.toUpperCase()}
             </button>
           ))}
         </div>
       </div>
 
-      {/* Skills Grid matching Figma square card styling */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-        {filteredSkills.map((skill, index) => {
-          const colorStyles = getTechColor(skill.name);
-          return (
-            <div
-              key={index}
-              className={`group relative rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-1 shadow-lg ${colorStyles}`}
-            >
-              {/* Icon Container */}
-              <div className="w-12 h-12 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-center mb-3 shadow-inner group-hover:scale-110 transition-transform">
-                {getTechIcon(skill.name)}
-              </div>
-
-              {/* Title & Details */}
-              <h3 className="font-mono text-sm font-bold text-slate-200 group-hover:text-white transition-colors">
-                {skill.name}
+      {/* Category Rows */}
+      <div className="flex flex-col gap-3">
+        {visibleGroups.map((group, i) => (
+          <div
+            key={group.id}
+            className="relative flex flex-col sm:flex-row sm:items-start gap-5 rounded-xl border border-slate-800/70 bg-slate-900/30 px-6 py-5 overflow-hidden transition-all duration-300 hover:border-slate-700/80 hover:bg-slate-900/50"
+          >
+            {/* Left — Category Info */}
+            <div className="sm:w-52 shrink-0">
+              <h3 className="font-mono text-sm font-bold text-slate-100 uppercase tracking-widest">
+                {group.label}
               </h3>
-
-              <div className="mt-2 flex items-center gap-1.5">
-                <span className="font-mono text-[10px] text-slate-400 bg-slate-800/80 px-2 py-0.5 rounded-full border border-slate-700/50">
-                  {skill.category}
-                </span>
-              </div>
+              <p className="mt-1 text-xs text-slate-500 leading-relaxed">
+                {group.description}
+              </p>
             </div>
-          );
-        })}
+
+            {/* Divider (desktop) */}
+            <div className="hidden sm:block w-px self-stretch bg-slate-800/80" />
+
+            {/* Right — Skill Tags */}
+            <div className="flex flex-wrap gap-2 items-start flex-1">
+              {group.skills.map((skill) => (
+                <span
+                  key={skill.name}
+                  className="inline-flex items-center gap-1.5 rounded-md border border-slate-700/60 bg-slate-800/60 px-3 py-1.5 transition-all duration-200 hover:border-slate-500 hover:bg-slate-800"
+                >
+                  <span className="font-mono text-sm font-medium text-slate-200">
+                    {skill.name}
+                  </span>
+                </span>
+              ))}
+            </div>
+
+            {/* Numbered Watermark */}
+            <span className="absolute right-5 bottom-1 font-mono text-6xl font-black text-slate-800/25 select-none pointer-events-none leading-none">
+              0{i + 1}
+            </span>
+          </div>
+        ))}
       </div>
     </section>
   );
 }
+

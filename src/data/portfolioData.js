@@ -1,11 +1,11 @@
 export const personalInfo = {
   name: "Marc S.",
-  title: "Associate Full Stack Developer",
-  tagline: "Developing dynamic & responsive web/mobile applications",
-  bio: "Hi, I'm Marc! A passionate Associate Full Stack Developer dedicated to crafting seamless web and mobile experiences. With a strong foundation in modern frontend and backend technologies, I focus on building scalable, performant, and user-centric applications that solve real-world problems.",
+  title: "Junior Full Stack Developer",
+  tagline: "Bringing Ideas To Life Through Tech And Design",
+  bio: "Hi, I'm Marc! A passionate Junior Full Stack Developer dedicated to crafting seamless web and mobile experiences. With a strong foundation in modern frontend and backend technologies, I focus on building scalable, performant, and user-centric applications that solve real-world problems.",
   status: "Available for new projects & opportunities",
   location: "Philippines",
-  email: "marc.developer@example.com",
+  email: "marcpaulsualog0@gmail.com",
   socials: [
     { label: "GitHub", url: "https://github.com", icon: "Github" },
     { label: "LinkedIn", url: "https://linkedin.com", icon: "Linkedin" },
@@ -23,19 +23,67 @@ export const navItems = [
   { id: "contact", number: "05", label: "contact" },
 ];
 
-export const skills = [
-  { name: "React", category: "Frontend", level: "Advanced", icon: "react" },
-  { name: "Flutter", category: "Mobile", level: "Advanced", icon: "flutter" },
-  { name: "Laravel", category: "Backend", level: "Intermediate", icon: "laravel" },
-  { name: "Tailwind CSS", category: "Frontend", level: "Advanced", icon: "tailwind" },
-  { name: "HTML5", category: "Frontend", level: "Advanced", icon: "html5" },
-  { name: "CSS3", category: "Frontend", level: "Advanced", icon: "css3" },
-  { name: "JavaScript", category: "Language", level: "Advanced", icon: "javascript" },
-  { name: "Firebase", category: "Cloud & DB", level: "Intermediate", icon: "firebase" },
-  { name: "Python", category: "Language / AI", level: "Intermediate", icon: "python" },
-  { name: "Figma", category: "UI/UX Design", level: "Advanced", icon: "figma" },
-  { name: "Android Studio", category: "Tooling", level: "Intermediate", icon: "android" },
-  { name: "Git & GitHub", category: "Tooling", level: "Advanced", icon: "git" },
+export const skillGroups = [
+  {
+    id: "languages",
+    label: "Languages",
+    description: "Programming Languages I use across my projects.",
+    skills: [
+      { name: "JavaScript" },
+      { name: "Python" },
+      { name: "Dart" },
+      { name: "PHP" },
+      { name: "HTML & CSS" },
+    ],
+  },
+  {
+    id: "frontend",
+    label: "Frontend",
+    description: "What Users See: Interfaces and responsive experiences I build.",
+    skills: [
+      { name: "React" },
+      { name: "Flutter" },
+      { name: "Tailwind CSS" },
+      { name: "Vite" },
+    ],
+  },
+  {
+    id: "backend",
+    label: "Backend",
+    description: "Behind the Scenes: APIs, server logic, and database management.",
+    skills: [
+      { name: "Laravel" },
+      { name: "Firebase" },
+      { name: "MySQL" },
+      { name: "PostgreSQL" },
+      { name: "REST APIs" },
+    ],
+  },
+  {
+    id: "mobile",
+    label: "Mobile",
+    description: "Cross-platform apps I develop for iOS and Android.",
+    skills: [
+      { name: "Flutter" },
+      { name: "Dart" },
+      { name: "Android Studio" },
+    ],
+  },
+  {
+    id: "devtools",
+    label: "Developer Tool",
+    description: "Dev tooling, workflows, and design systems I rely on.",
+    skills: [
+      { name: "Git" },
+      { name: "GitHub" },
+      { name: "Figma" },
+      { name: "VS Code" },
+      { name: "Xampp" },
+      { name: "Stitch" },
+      { name: "Discord" },
+    ],
+  },
+
 ];
 
 export const certificates = [
