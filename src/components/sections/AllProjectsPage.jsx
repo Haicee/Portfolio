@@ -9,7 +9,6 @@ import { GithubIcon } from "../ui/SocialIcons";
 export function AllProjectsPage({ onBack }) {
   const [filter, setFilter] = useState("ALL");
   const [searchQuery, setSearchQuery] = useState("");
-  const [expandedId, setExpandedId] = useState(null);
   const [activeModalData, setActiveModalData] = useState(null);
 
   const categories = ["ALL", "WEB", "MOBILE", "INTERACTIVE"];
@@ -22,10 +21,6 @@ export function AllProjectsPage({ onBack }) {
       project.tools.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()));
     return matchesFilter && matchesSearch;
   });
-
-  const toggleExpand = (id) => {
-    setExpandedId(expandedId === id ? null : id);
-  };
 
   return (
     <div className="py-8 animate-fade-in max-w-4xl mx-auto">
@@ -59,8 +54,8 @@ export function AllProjectsPage({ onBack }) {
                 key={cat}
                 onClick={() => setFilter(cat)}
                 className={`font-mono text-[11px] px-3.5 py-1 rounded-full transition-all ${filter === cat
-                  ? "bg-cyan-500 text-slate-950 font-bold shadow-sm"
-                  : "text-slate-400 hover:text-slate-200"
+                    ? "bg-cyan-500 text-slate-950 font-bold shadow-sm"
+                    : "text-slate-400 hover:text-slate-200"
                   }`}
               >
                 {cat}
@@ -70,19 +65,15 @@ export function AllProjectsPage({ onBack }) {
         </div>
       </div>
 
-      {/* Single Column Layout (1 card per row) with Cyan Palette & Enhanced Hover UX */}
+      {/* Single Column Layout (1 card per row) */}
       <div className="flex flex-col gap-6">
         {filteredProjects.map((project, idx) => {
-          const isExpanded = expandedId === project.id;
           const formattedNum = String(idx + 1).padStart(2, "0");
 
           return (
             <div
               key={project.id}
-              className={`group rounded-2xl border transition-all duration-300 flex flex-col justify-between p-6 sm:p-7 bg-slate-900/70 backdrop-blur-md ${isExpanded
-                ? "border-cyan-500/80 shadow-[0_12px_35px_rgba(6,182,212,0.18)] bg-slate-900/95"
-                : "border-slate-800/80 hover:border-cyan-500/50 hover:shadow-[0_10px_30px_rgba(6,182,212,0.12)] hover:-translate-y-1"
-                }`}
+              className="group rounded-2xl border border-slate-800/80 hover:border-cyan-500/50 transition-all duration-300 flex flex-col justify-between p-6 sm:p-7 bg-slate-900/70 backdrop-blur-md hover:shadow-[0_10px_30px_rgba(6,182,212,0.12)] hover:-translate-y-1"
             >
               <div>
                 {/* Number & Year Header */}
@@ -109,7 +100,7 @@ export function AllProjectsPage({ onBack }) {
                 {/* Detailed Highlights & Interactive Mockup Screens */}
                 <div className="mt-5 pt-4 border-t border-slate-800/90 space-y-4">
                   <div className="font-mono text-[11px] text-cyan-400 uppercase tracking-wider font-semibold">
-                    // Key Features & Architectural Scope:
+                    // Key Features & Scope:
                   </div>
                   <ul className="space-y-1.5 text-xs sm:text-sm text-slate-300">
                     {project.highlights.map((h, i) => (
@@ -124,7 +115,7 @@ export function AllProjectsPage({ onBack }) {
                   {project.screens?.length > 0 && (
                     <div className="mt-5 p-4 rounded-xl bg-slate-950/80 border border-slate-800/80 group-hover:border-slate-700/80 transition-colors">
                       <p className="font-mono text-[10px] text-slate-500 uppercase tracking-wider mb-3">
-                        Interactive Viewport Screens (Click to inspect)
+                        Project Viewport Screens (Click to inspect full view)
                       </p>
                       {project.deviceType === "phone" ? (
                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 justify-items-center">
@@ -132,10 +123,12 @@ export function AllProjectsPage({ onBack }) {
                             <PhoneFrame
                               key={sIdx}
                               screen={screen}
+                              image={screen.image}
                               onClick={() => setActiveModalData({
                                 title: `${project.title} — ${screen.label}`,
                                 description: `Screen showcase for ${screen.label} in ${project.title}. Built with ${project.tools.join(", ")}.`,
-                                tags: project.tools
+                                tags: project.tools,
+                                image: screen.image
                               })}
                             />
                           ))}
@@ -146,10 +139,12 @@ export function AllProjectsPage({ onBack }) {
                             <BrowserFrame
                               key={sIdx}
                               screen={screen}
+                              image={screen.image}
                               onClick={() => setActiveModalData({
                                 title: `${project.title} — ${screen.label}`,
                                 description: `Desktop viewport view for ${screen.label}. Implemented with ${project.tools.join(", ")}.`,
-                                tags: project.tools
+                                tags: project.tools,
+                                image: screen.image
                               })}
                             />
                           ))}

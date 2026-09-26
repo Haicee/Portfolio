@@ -14,6 +14,31 @@ export function Projects({ onViewAll }) {
     setExpandedId(expandedId === id ? null : id);
   };
 
+  // Helper to render capped tech stack with +N badge
+  const renderTechStack = (tools) => {
+    const maxVisible = 2; // Show max 2 tools to ensure clean single-line fit on all screen sizes
+    const visibleTools = tools.slice(0, maxVisible);
+    const hiddenCount = tools.length - maxVisible;
+
+    return (
+      <div className="flex items-center gap-1.5 shrink min-w-0">
+        {visibleTools.map((tool, tIdx) => (
+          <span
+            key={tIdx}
+            className="font-mono text-[10px] whitespace-nowrap px-2 py-0.5 rounded bg-slate-950/80 border border-slate-800 text-slate-400 group-hover:border-slate-700 transition-colors truncate max-w-[90px] sm:max-w-none"
+          >
+            {tool}
+          </span>
+        ))}
+        {hiddenCount > 0 && (
+          <span className="font-mono text-[10px] font-semibold px-1.5 py-0.5 rounded bg-slate-950/90 border border-slate-800 shrink-0">
+            +{hiddenCount}
+          </span>
+        )}
+      </div>
+    );
+  };
+
   return (
     <section id="experience" className="py-14 border-t border-slate-800/80">
       <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-4 mb-8">
@@ -26,7 +51,7 @@ export function Projects({ onViewAll }) {
         {/* View All Button */}
         <button
           onClick={onViewAll}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-400 font-mono text-xs font-bold transition-all self-start sm:self-auto group"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-400 font-mono text-xs font-bold transition-all self-start sm:self-auto group shrink-0"
         >
           <span>VIEW ALL PROJECTS ({projects.length})</span>
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -43,8 +68,8 @@ export function Projects({ onViewAll }) {
             <div
               key={project.id}
               className={`group rounded-2xl border transition-all duration-300 flex flex-col justify-between p-6 bg-slate-900/70 backdrop-blur-md ${isExpanded
-                  ? "border-cyan-500/70 shadow-[0_10px_30px_rgba(6,182,212,0.15)] bg-slate-900/95"
-                  : "border-slate-800/80 hover:border-cyan-500/40 hover:shadow-[0_8px_25px_rgba(6,182,212,0.08)] hover:-translate-y-1"
+                ? "border-cyan-500/70 shadow-[0_10px_30px_rgba(6,182,212,0.15)] bg-slate-900/95"
+                : "border-slate-800/80 hover:border-cyan-500/40 hover:shadow-[0_8px_25px_rgba(6,182,212,0.08)] hover:-translate-y-1"
                 }`}
             >
               <div>
@@ -69,7 +94,7 @@ export function Projects({ onViewAll }) {
                   {project.description}
                 </p>
 
-                {/* Expandable Details Section (Clean text summary without embedded mockups) */}
+                {/* Expandable Details Section */}
                 {isExpanded && (
                   <div className="mt-5 pt-4 border-t border-slate-800/90 space-y-3 animate-fade-in">
                     <div className="font-mono text-[11px] text-cyan-400 uppercase tracking-wider font-semibold">
@@ -88,27 +113,18 @@ export function Projects({ onViewAll }) {
               </div>
 
               {/* Bottom Card Controls & Clean Tools Layout */}
-              <div className="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between gap-3">
+              <div className="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between gap-2">
                 {/* Left: View Details Dropdown Button */}
                 <button
                   onClick={() => toggleExpand(project.id)}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800/90 hover:bg-slate-700/80 border border-slate-700/60 font-mono text-xs font-medium text-slate-200 hover:text-white transition-colors shrink-0"
+                  className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-slate-800/90 hover:bg-slate-700/80 border border-slate-700/60 font-mono text-[11px] font-medium text-slate-200 hover:text-white transition-colors shrink-0"
                 >
                   <span>{isExpanded ? "LESS" : "DETAILS"}</span>
-                  {isExpanded ? <ChevronUp className="w-3.5 h-3.5 text-cyan-400" /> : <ChevronDown className="w-3.5 h-3.5 text-slate-400" />}
+                  {isExpanded ? <ChevronUp className="w-3 h-3 text-cyan-400" /> : <ChevronDown className="w-3 h-3 text-slate-400" />}
                 </button>
 
-                {/* Center: Tools (Single-line row with overflow ellipsis or flex) */}
-                <div className="flex items-center gap-1.5 overflow-hidden px-1">
-                  {project.tools.map((tool, tIdx) => (
-                    <span
-                      key={tIdx}
-                      className="font-mono text-[10px] whitespace-nowrap px-2 py-0.5 rounded bg-slate-950/80 border border-slate-800 text-slate-400 group-hover:border-slate-700 transition-colors"
-                    >
-                      {tool}
-                    </span>
-                  ))}
-                </div>
+                {/* Center: Tools with +N badge */}
+                {renderTechStack(project.tools)}
 
                 {/* Right: GitHub Repo Link */}
                 <a

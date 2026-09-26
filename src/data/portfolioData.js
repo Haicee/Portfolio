@@ -2,6 +2,25 @@ import hackathonCertImg from '../assets/certificates/Hackaton certificate.png';
 import psitsCertImg from '../assets/certificates/PSITS certificate.png';
 import tesdaCertImg from '../assets/certificates/Tesda certificate.png';
 
+// Project Images
+import resme1 from '../assets/projects/resme1.png';
+import resme2 from '../assets/projects/resme2.png';
+import resme3 from '../assets/projects/resme3.png';
+import resme4 from '../assets/projects/resme4.png';
+
+import swiss1 from '../assets/projects/swiss1.png';
+import swiss2 from '../assets/projects/swiss2.png';
+import swiss3 from '../assets/projects/swiss3.png';
+
+import pds1 from '../assets/projects/pds1.png';
+import pds2 from '../assets/projects/pds2.png';
+import pds3 from '../assets/projects/pds3.png';
+import pds4 from '../assets/projects/pds4.png';
+import pds5 from '../assets/projects/pds5.png';
+
+import ims1 from '../assets/projects/ims1.png';
+import ims2 from '../assets/projects/ims2.png';
+
 export const personalInfo = {
   name: "Marc S.",
   title: "Junior Full Stack Developer",
@@ -82,6 +101,8 @@ export const skillGroups = [
       { name: "GitHub" },
       { name: "Figma" },
       { name: "VS Code" },
+      { name: "Antigravity" },
+      { name: "Node.js" },
       { name: "Xampp" },
       { name: "Stitch" },
       { name: "Discord" },
@@ -132,14 +153,14 @@ export const certificates = [
 export const projects = [
   {
     id: 1,
-    title: "Emergency Response & Real-Time Dispatch System",
+    title: "Emergency Mobile Application with Integrated GPS Tracking",
     type: "mobile",
-    category: "MOBILE",
+    category: "Lead Developer",
     year: "2024",
-    github: "https://github.com",
-    badge: "Featured Mobile App",
+    github: "https://github.com/Haicee/Emergency-Mobile-Application-with-Integrated-GPS-Tracking",
+    badge: "Mobile App",
     role: "Lead Mobile Developer",
-    tools: ["Flutter", "Dart", "Firebase", "Google Maps API", "Cloud Firestore"],
+    tools: ["Flutter", "Dart", "Firebase", "MapLibre", "OpenStreetMap", "React", "JavaScript"],
     description: "A mission-critical cross-platform mobile application providing instant SOS dispatch, geo-fenced incident reporting, live GPS tracking of response units, and direct emergency hotline connectivity.",
     highlights: [
       "Real-time geolocation tracking with interactive map radius visualization",
@@ -149,20 +170,20 @@ export const projects = [
     deviceType: "phone",
     screenCount: 4,
     screens: [
-      { label: "Login & Auth", type: "phone", theme: "red", icon: "ShieldAlert" },
-      { label: "Emergency Dispatch", type: "phone", theme: "red", icon: "PhoneCall" },
-      { label: "Incident Status", type: "phone", theme: "slate", icon: "Activity" },
-      { label: "Live GPS Map", type: "phone", theme: "map", icon: "MapPin" }
+      { label: "Login & Auth", type: "phone", theme: "red", icon: "ShieldAlert", image: resme1 },
+      { label: "Emergency Dispatch", type: "phone", theme: "red", icon: "PhoneCall", image: resme2 },
+      { label: "Incident Status", type: "phone", theme: "slate", icon: "Activity", image: resme3 },
+      { label: "Live GPS Map", type: "phone", theme: "map", icon: "MapPin", image: resme4 }
     ]
   },
   {
     id: 2,
-    title: "Enterprise Administrative Portal & Verification System",
+    title: "Swissstacks Website",
     type: "web",
-    category: "WEB",
+    category: "Lead Developer",
     year: "2024",
-    github: "https://github.com",
-    badge: "Web Platform",
+    github: "https://github.com/Haicee/Swissstacks-Website",
+    badge: "Website Platform",
     role: "Full Stack Web Developer",
     tools: ["React", "Laravel", "MySQL", "Tailwind CSS", "RESTful API"],
     description: "Comprehensive administrative management web portal featuring role-based authentication, real-time analytics, paginated membership data tables, and dynamic approval modals.",
@@ -172,22 +193,20 @@ export const projects = [
       "Interactive analytics dashboard visualizing system activities and registrations"
     ],
     deviceType: "browser",
-    screenCount: 5,
+    screenCount: 3,
     screens: [
-      { label: "Admin Overview", type: "browser", theme: "blue", icon: "LayoutDashboard" },
-      { label: "User Management", type: "browser", theme: "blue", icon: "Users" },
-      { label: "Verification Modal", type: "browser", theme: "blue", icon: "CheckCircle2" },
-      { label: "Record Data Grid", type: "browser", theme: "blue", icon: "Table" },
-      { label: "System Settings", type: "browser", theme: "blue", icon: "Sliders" }
+      { label: "Landing & Overview", type: "browser", theme: "blue", icon: "LayoutDashboard", image: swiss1 },
+      { label: "Services & Features", type: "browser", theme: "blue", icon: "Users", image: swiss2 },
+      { label: "Contact & Portal", type: "browser", theme: "blue", icon: "CheckCircle2", image: swiss3 }
     ]
   },
   {
     id: 3,
-    title: "Integrated Records & Activity Monitoring Dashboard",
+    title: "Personal Data Sheet System",
     type: "web",
-    category: "WEB",
+    category: "Assistant Developer",
     year: "2023",
-    github: "https://github.com",
+    github: "https://github.com/Haicee/PDS-System",
     badge: "Web Application",
     role: "Full Stack Engineer",
     tools: ["React", "Tailwind CSS", "PHP", "PostgreSQL", "Chart.js"],
@@ -200,21 +219,21 @@ export const projects = [
     deviceType: "browser",
     screenCount: 5,
     screens: [
-      { label: "Splash Gateway", type: "browser", theme: "cyan", icon: "KeyRound" },
-      { label: "Status Metric Cards", type: "browser", theme: "multi", icon: "BarChart3" },
-      { label: "Activity Ledger", type: "browser", theme: "slate", icon: "FileText" },
-      { label: "Record Explorer", type: "browser", theme: "cyan", icon: "Search" },
-      { label: "Audit Timeline", type: "browser", theme: "slate", icon: "History" }
+      { label: "Form Overview", type: "browser", theme: "cyan", icon: "KeyRound", image: pds1 },
+      { label: "Personal Information", type: "browser", theme: "multi", icon: "BarChart3", image: pds2 },
+      { label: "Work Experience", type: "browser", theme: "slate", icon: "FileText", image: pds3 },
+      { label: "Education Records", type: "browser", theme: "cyan", icon: "Search", image: pds4 },
+      { label: "Print & Export Preview", type: "browser", theme: "slate", icon: "History", image: pds5 }
     ]
   },
   {
     id: 4,
-    title: "Digital Certificate Issuance & QR Verification Platform",
+    title: "Identity Management System",
     type: "web",
-    category: "WEB",
+    category: "Lead Developer",
     year: "2023",
-    github: "https://github.com",
-    badge: "Security & Verification",
+    github: "https://github.com/Haicee/IM-System",
+    badge: "Web Application",
     role: "Lead Full Stack Developer",
     tools: ["React", "Laravel", "QR Engine", "MySQL", "Tailwind CSS"],
     description: "Automated credential generation and verification platform. Issues cryptographically tamper-resistant digital certificates embedded with scannable QR codes for instantaneous public validation.",
@@ -224,90 +243,10 @@ export const projects = [
       "Bulk batch issuance portal for educational workshops and training cohorts"
     ],
     deviceType: "browser",
-    screenCount: 5,
+    screenCount: 2,
     screens: [
-      { label: "Issuer Gateway", type: "browser", theme: "dark", icon: "Lock" },
-      { label: "Credential Preview", type: "browser", theme: "blue", icon: "Award" },
-      { label: "Live QR Validation", type: "browser", theme: "dark", icon: "QrCode" },
-      { label: "Issuance Registry", type: "browser", theme: "slate", icon: "FileCheck" },
-      { label: "Certificate Template", type: "browser", theme: "blue", icon: "FileBadge" }
-    ]
-  },
-  {
-    id: 5,
-    title: "EcoSplash: Interactive Environmental Educational Game",
-    type: "interactive",
-    category: "INTERACTIVE",
-    year: "2023",
-    github: "https://github.com",
-    badge: "Interactive Game & Web",
-    role: "Game Developer & UI Designer",
-    tools: ["JavaScript", "HTML5 Canvas", "CSS3 Animations", "Web Audio API"],
-    description: "Engaging 2D educational game championing water conservation and eco-friendly habits. Built with smooth character physics, interactive puzzle stages, and gamified quizzes.",
-    highlights: [
-      "Custom 60fps canvas rendering loop with custom sprite animations",
-      "Dynamic stage mechanics and physics-based puzzle obstacles",
-      "Built-in level editor and persistent local high-score leaderboard"
-    ],
-    deviceType: "browser",
-    screenCount: 5,
-    screens: [
-      { label: "Start Screen & Character", type: "browser", theme: "emerald", icon: "Gamepad2" },
-      { label: "Stage Selection", type: "browser", theme: "emerald", icon: "Map" },
-      { label: "Water Puzzle Gameplay", type: "browser", theme: "emerald", icon: "Play" },
-      { label: "Conservation Quiz", type: "browser", theme: "emerald", icon: "HelpCircle" },
-      { label: "Score & Code View", type: "browser", theme: "dark", icon: "Terminal" }
-    ]
-  },
-  {
-    id: 6,
-    title: "EcoSplash Mobile Companion & Habit Tracker",
-    type: "mobile",
-    category: "MOBILE",
-    year: "2023",
-    github: "https://github.com",
-    badge: "Mobile Application",
-    role: "Mobile Developer",
-    tools: ["Flutter", "Dart", "Firebase Auth", "Cloud Firestore", "Local Notifications"],
-    description: "Cross-platform mobile application companion empowering users to log daily eco-habits, participate in school and community challenges, and earn collectible virtual trophies.",
-    highlights: [
-      "Personalized daily habit reminders with scheduled local push notifications",
-      "Gamified streak counter with celebratory micro-animations",
-      "Cloud synchronizing seamlessly with EcoSplash web game profiles"
-    ],
-    deviceType: "phone",
-    screenCount: 4,
-    screens: [
-      { label: "Splash & Welcome", type: "phone", theme: "emerald", icon: "Sparkles" },
-      { label: "Auth & Profile", type: "phone", theme: "emerald", icon: "UserCheck" },
-      { label: "Trophy Gallery", type: "phone", theme: "emerald", icon: "Trophy" },
-      { label: "Daily Eco Habit Log", type: "phone", theme: "emerald", icon: "CalendarCheck" }
-    ]
-  },
-  {
-    id: 7,
-    title: "Next-Gen 3D Interactive Showcase & Product Portfolio",
-    type: "web",
-    category: "WEB",
-    year: "2024",
-    github: "https://github.com",
-    badge: "3D & Advanced UI",
-    role: "Frontend Engineer",
-    tools: ["React", "Three.js / CSS 3D", "Tailwind CSS", "Vite"],
-    description: "Immersive dark-themed interactive product showcase featuring 3D isometric device mockups, interactive lighting rigs, and responsive telemetry monitors.",
-    highlights: [
-      "Spatial 3D hardware models rendered with smooth mouse-orbit interaction",
-      "Ambient neon glow accents optimized with zero performance overhead",
-      "Fluid responsive layout adapting gracefully across all screen dimensions"
-    ],
-    deviceType: "browser",
-    screenCount: 3,
-    screens: [
-      { label: "Spatial Hero Stage", type: "browser", theme: "dark", icon: "Laptop" },
-      { label: "3D Isometric Models", type: "browser", theme: "dark", icon: "Box" },
-      { label: "System Telemetry", type: "browser", theme: "dark", icon: "Cpu" }
+      { label: "Identity Dashboard", type: "browser", theme: "dark", icon: "Lock", image: ims1 },
+      { label: "Credential Verification", type: "browser", theme: "blue", icon: "Award", image: ims2 }
     ]
   }
 ];
-
-
