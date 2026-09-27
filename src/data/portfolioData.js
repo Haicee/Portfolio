@@ -156,16 +156,17 @@ export const projects = [
     title: "Emergency Mobile Application with Integrated GPS Tracking",
     type: "mobile",
     category: "Lead Developer",
-    year: "2024",
+    year: "2025",
     github: "https://github.com/Haicee/Emergency-Mobile-Application-with-Integrated-GPS-Tracking",
     badge: "Mobile App",
     role: "Lead Mobile Developer",
     tools: ["Flutter", "Dart", "Firebase", "MapLibre", "OpenStreetMap", "React", "JavaScript"],
-    description: "A mission-critical cross-platform mobile application providing instant SOS dispatch, geo-fenced incident reporting, live GPS tracking of response units, and direct emergency hotline connectivity.",
+    description: "A cross-platform mobile application providing instant SOS dispatch, geofenced incident reporting, live GPS tracking of response units, and direct emergency hotline connectivity.",
     highlights: [
-      "Real-time geolocation tracking with interactive map radius visualization",
+      "Implemented real-time location tracking to help responders identify emergency callers.",
       "One-tap rapid SOS distress signal triggering automated push alerts",
-      "Offline-resilient caching with Firebase synchronization"
+      "Dijkstra’s shortest-path algorithm is applied to support route identification for responders.",
+      "Built responsive web administrative dashboards for responder management and real-time incident monitoring.",
     ],
     deviceType: "phone",
     screenCount: 4,
@@ -181,23 +182,24 @@ export const projects = [
     title: "Swissstacks Website",
     type: "web",
     category: "Lead Developer",
-    year: "2024",
+    year: "2026",
     github: "https://github.com/Haicee/Swissstacks-Website",
     badge: "Website Platform",
     role: "Full Stack Web Developer",
-    tools: ["React", "Laravel", "MySQL", "Tailwind CSS", "RESTful API"],
-    description: "Comprehensive administrative management web portal featuring role-based authentication, real-time analytics, paginated membership data tables, and dynamic approval modals.",
+    tools: ["React", "Tailwind CSS", "JavaScript", "SilentForms", "Firebase"],
+    description: "An interactive corporate web application showcasing technical services, core competencies, and streamlined client inquiry channels for SwissStack.",
     highlights: [
-      "Role-Based Access Control (RBAC) ensuring secure administrative permissions",
-      "High-speed data grid with instant search, multi-column filters, and export",
-      "Interactive analytics dashboard visualizing system activities and registrations"
+      "Built a responsive single-page web platform using React and Tailwind CSS to deliver a polished brand presence and clear service catalog.",
+      "Created a modern, interactive user interface that strengthens brand identity and user engagement",
+      "Configured Firebase infrastructure for fast static web hosting and scalable data storage.",
+      "Integrated SilentForms for frictionless client lead capture and direct communication processing without backend overhead."
     ],
     deviceType: "browser",
     screenCount: 3,
     screens: [
-      { label: "Landing & Overview", type: "browser", theme: "blue", icon: "LayoutDashboard", image: swiss1 },
-      { label: "Services & Features", type: "browser", theme: "blue", icon: "Users", image: swiss2 },
-      { label: "Contact & Portal", type: "browser", theme: "blue", icon: "CheckCircle2", image: swiss3 }
+      { label: "swissstacks.com/", type: "browser", theme: "blue", icon: "LayoutDashboard", image: swiss1 },
+      { label: "swissstacks.com/", type: "browser", theme: "blue", icon: "Users", image: swiss2 },
+      { label: "swissstacks.com/", type: "browser", theme: "blue", icon: "CheckCircle2", image: swiss3 }
     ]
   },
   {
@@ -205,25 +207,26 @@ export const projects = [
     title: "Personal Data Sheet System",
     type: "web",
     category: "Assistant Developer",
-    year: "2023",
+    year: "2026",
     github: "https://github.com/Haicee/PDS-System",
     badge: "Web Application",
     role: "Full Stack Engineer",
-    tools: ["React", "Tailwind CSS", "PHP", "PostgreSQL", "Chart.js"],
-    description: "Data-intensive activity monitoring dashboard designed for operational tracking, categorized status badges (active, pending, flagged), and batch record updates.",
+    tools: ["Laravel", "Tailwind CSS", "PHP", "MySQL", "Xampp"],
+    description: "A web-based employee information management portal engineered to digitize personal data intake, eliminate paper-reliant workflows, and streamline record accessibility.",
     highlights: [
-      "Visual status metrics categorized with high-contrast color cards",
-      "Audit trail logs recording user mutations and record modifications",
-      "Automated PDF and Excel export pipelines for operational reporting"
+      "Built a secure, role-based admin dashboard for centralized data oversight and user permission management.",
+      "Architected full-stack CRUD operations using Laravel and MySQL to secure and standardize employee data entry and management.",
+      "Implemented comprehensive audit trail mechanisms to trace and monitor all user data modifications and system activities.",
+      "Created export-ready PDF and Excel generation modules, ensuring immediate data availability for compliance and reporting needs."
     ],
     deviceType: "browser",
     screenCount: 5,
     screens: [
-      { label: "Form Overview", type: "browser", theme: "cyan", icon: "KeyRound", image: pds1 },
-      { label: "Personal Information", type: "browser", theme: "multi", icon: "BarChart3", image: pds2 },
-      { label: "Work Experience", type: "browser", theme: "slate", icon: "FileText", image: pds3 },
-      { label: "Education Records", type: "browser", theme: "cyan", icon: "Search", image: pds4 },
-      { label: "Print & Export Preview", type: "browser", theme: "slate", icon: "History", image: pds5 }
+      { label: "pds.localhost:5173/", type: "browser", theme: "cyan", icon: "KeyRound", image: pds1 },
+      { label: "pds.localhost:5173/", type: "browser", theme: "multi", icon: "BarChart3", image: pds2 },
+      { label: "pds.localhost:5173/", type: "browser", theme: "slate", icon: "FileText", image: pds3 },
+      { label: "pds.localhost:5173/", type: "browser", theme: "cyan", icon: "Search", image: pds4 },
+      { label: "pds.localhost:5173/", type: "browser", theme: "slate", icon: "History", image: pds5 }
     ]
   },
   {
@@ -231,22 +234,23 @@ export const projects = [
     title: "Identity Management System",
     type: "web",
     category: "Lead Developer",
-    year: "2023",
+    year: "2026",
     github: "https://github.com/Haicee/IM-System",
     badge: "Web Application",
     role: "Lead Full Stack Developer",
-    tools: ["React", "Laravel", "QR Engine", "MySQL", "Tailwind CSS"],
-    description: "Automated credential generation and verification platform. Issues cryptographically tamper-resistant digital certificates embedded with scannable QR codes for instantaneous public validation.",
+    tools: ["React", "Laravel", "PHP", "Tailwind CSS", "MySQL"],
+    description: "An automated digital identity management platform engineered with accessible user interfaces to streamline employee data capture, automate PDF credential generation, and facilitate seamless vendor handoffs.",
     highlights: [
-      "On-the-fly vector certificate generation with unique verification hashes",
-      "Public QR inspection scanner validating authenticity in under 200ms",
-      "Bulk batch issuance portal for educational workshops and training cohorts"
+      "Engineered database-driven intake forms with intuitive validation and focus states to reduce input friction and manual data entry errors.",
+      "Built a secure role-based admin dashboard with data access controls to manage employee credentials.",
+      "Implemented automated server-side PDF generation to dynamically format and render high-resolution digital identity credentials.",
+      "Designed accessible, high-contrast user interfaces with enhanced typography and clear layout hierarchy, tailored for improved visual readability across age groups."
     ],
     deviceType: "browser",
     screenCount: 2,
     screens: [
-      { label: "Identity Dashboard", type: "browser", theme: "dark", icon: "Lock", image: ims1 },
-      { label: "Credential Verification", type: "browser", theme: "blue", icon: "Award", image: ims2 }
+      { label: "ims.localhost:5173/", type: "browser", theme: "dark", icon: "Lock", image: ims1 },
+      { label: "ims.localhost:5173/", type: "browser", theme: "blue", icon: "Award", image: ims2 }
     ]
   }
 ];

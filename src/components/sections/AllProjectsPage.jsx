@@ -11,7 +11,7 @@ export function AllProjectsPage({ onBack }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeModalData, setActiveModalData] = useState(null);
 
-  const categories = ["ALL", "WEB", "MOBILE", "INTERACTIVE"];
+  const categories = ["ALL", "WEB", "MOBILE"];
 
   const filteredProjects = projects.filter((project) => {
     const matchesFilter = filter === "ALL" || project.category === filter || project.type === filter.toLowerCase();
@@ -54,8 +54,8 @@ export function AllProjectsPage({ onBack }) {
                 key={cat}
                 onClick={() => setFilter(cat)}
                 className={`font-mono text-[11px] px-3.5 py-1 rounded-full transition-all ${filter === cat
-                    ? "bg-cyan-500 text-slate-950 font-bold shadow-sm"
-                    : "text-slate-400 hover:text-slate-200"
+                  ? "bg-cyan-500 text-slate-950 font-bold shadow-sm"
+                  : "text-slate-400 hover:text-slate-200"
                   }`}
               >
                 {cat}
@@ -113,10 +113,8 @@ export function AllProjectsPage({ onBack }) {
 
                   {/* Interactive Screen Viewports inside AllProjectsPage */}
                   {project.screens?.length > 0 && (
-                    <div className="mt-5 p-4 rounded-xl bg-slate-950/80 border border-slate-800/80 group-hover:border-slate-700/80 transition-colors">
-                      <p className="font-mono text-[10px] text-slate-500 uppercase tracking-wider mb-3">
-                        Project Viewport Screens (Click to inspect full view)
-                      </p>
+                    <div className="mt-5 p-4 rounded-xl ">
+
                       {project.deviceType === "phone" ? (
                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 justify-items-center">
                           {project.screens.map((screen, sIdx) => (
@@ -134,21 +132,28 @@ export function AllProjectsPage({ onBack }) {
                           ))}
                         </div>
                       ) : (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                        <div className="flex flex-wrap justify-center gap-3">
                           {project.screens.map((screen, sIdx) => (
-                            <BrowserFrame
+                            <div
                               key={sIdx}
-                              screen={screen}
-                              image={screen.image}
-                              onClick={() => setActiveModalData({
-                                title: `${project.title} — ${screen.label}`,
-                                description: `Desktop viewport view for ${screen.label}. Implemented with ${project.tools.join(", ")}.`,
-                                tags: project.tools,
-                                image: screen.image
-                              })}
-                            />
+                              className="w-full sm:w-[calc(50%-0.375rem)] lg:w-[calc(33.333%-0.5rem)]"
+                            >
+                              <BrowserFrame
+                                screen={screen}
+                                image={screen.image}
+                                onClick={() =>
+                                  setActiveModalData({
+                                    title: `${project.title} — ${screen.label}`,
+                                    description: `Desktop viewport view for ${screen.label}. Implemented with ${project.tools.join(", ")}.`,
+                                    tags: project.tools,
+                                    image: screen.image
+                                  })
+                                }
+                              />
+                            </div>
                           ))}
                         </div>
+
                       )}
                     </div>
                   )}
@@ -178,7 +183,7 @@ export function AllProjectsPage({ onBack }) {
                   className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-slate-950 hover:bg-cyan-950/50 border border-slate-800 hover:border-cyan-500/50 font-mono text-xs text-slate-300 hover:text-cyan-300 transition-all ml-auto"
                 >
                   <GithubIcon className="w-3.5 h-3.5 text-slate-400 group-hover:text-cyan-400" />
-                  <span>VIEW REPO</span>
+                  <span>View</span>
                   <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-cyan-400" />
                 </a>
               </div>
@@ -187,13 +192,7 @@ export function AllProjectsPage({ onBack }) {
         })}
       </div>
 
-      {/* Lightbox Modal */}
-      <LightboxModal
-        isOpen={!!activeModalData}
-        onClose={() => setActiveModalData(null)}
-        title={activeModalData?.title}
-        details={activeModalData}
-      />
+
     </div>
   );
 }
