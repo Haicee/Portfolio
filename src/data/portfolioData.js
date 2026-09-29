@@ -43,7 +43,19 @@ export const navItems = [
   { id: "skills", number: "02", label: "skills" },
   { id: "certificates", number: "03", label: "certificates" },
   { id: "experience", number: "04", label: "experience" },
-  { id: "contact", number: "05", label: "contact" },
+  { id: "recommendations", number: "05", label: "recommendations" },
+  { id: "github", number: "06", label: "github" },
+  { id: "contact", number: "07", label: "contact" },
+];
+
+export const recommendations = [
+  {
+    id: 1,
+    quote: "He has consistently done an excellent job. He is reliable, friendly, and always willing to help others. He approaches his work with a positive attitude and can be counted on to follow through on his responsibilities. He is also not afraid to go the extra mile when needed, which makes him a valuable and dependable team member.",
+    name: "Ryan",
+    role: "Swissstacks Founder",
+    initials: "Ry"
+  }
 ];
 
 export const skillGroups = [

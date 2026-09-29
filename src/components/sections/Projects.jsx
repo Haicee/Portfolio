@@ -40,7 +40,7 @@ export function Projects({ onViewAll }) {
   };
 
   return (
-    <section id="experience" className="py-14 border-t border-slate-800/80">
+    <section id="experience" className="py-[70px] border-t border-slate-800/80">
       <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-4 mb-8">
         <SectionHeader
           number="04"
@@ -53,7 +53,7 @@ export function Projects({ onViewAll }) {
           onClick={onViewAll}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-400 font-mono text-xs font-bold transition-all self-start sm:self-auto group shrink-0"
         >
-          <span>VIEW ALL PROJECTS ({projects.length})</span>
+          <span>MORE DETAILS ({projects.length})</span>
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </button>
       </div>
@@ -98,7 +98,7 @@ export function Projects({ onViewAll }) {
                 {isExpanded && (
                   <div className="mt-5 pt-4 border-t border-slate-800/90 space-y-3 animate-fade-in">
                     <div className="font-mono text-[11px] text-cyan-400 uppercase tracking-wider font-semibold">
-                      // Architectural Highlights:
+                      // KEY IMPLEMENTATIONS:
                     </div>
                     <ul className="space-y-1.5 text-xs text-slate-300">
                       {project.highlights.map((h, i) => (

@@ -109,7 +109,7 @@ function CertModal({ cert, onClose }) {
 
         {/* Footer */}
         <div className="flex items-center justify-between px-6 py-4 mt-4 border-t border-slate-800 text-xs font-mono">
-          <span className="text-slate-500">ESC to close</span>
+          <span className="text-slate-500"></span>
           {cert.credentialUrl && cert.credentialUrl !== "#" ? (
             <a
               href={cert.credentialUrl}
@@ -140,9 +140,9 @@ function CertCard({ cert, position, onClick }) {
 
   // Position & transform offsets so side cards peek out prominently
   const rotateClass = position === "left"
-    ? "-rotate-6 -translate-x-32 sm:-translate-x-44 scale-90"
+    ? "-rotate-6 -translate-x-36 sm:-translate-x-44 scale-90"
     : position === "right"
-      ? "rotate-6 translate-x-32 sm:translate-x-44 scale-90"
+      ? "rotate-6 translate-x-36 sm:translate-x-44 scale-90"
       : "rotate-0 scale-100 z-20";
 
   return (
@@ -238,7 +238,7 @@ export function Certificates() {
   };
 
   return (
-    <section id="certificates" className="py-14 border-t border-slate-800/80">
+    <section id="certificates" className="py-[70px] border-t border-slate-800/80">
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-10">
         <SectionHeader
           number="03"
@@ -269,7 +269,7 @@ export function Certificates() {
       </div>
 
       {/* Card Stack */}
-      <div className="relative flex items-center justify-center h-72 sm:h-80 select-none">
+      <div className="relative flex items-center justify-center h-72 sm:h-80 select-none overflow-hidden sm:overflow-visible">
         {certificates.map((cert, i) => {
           const pos = getPosition(i);
           if (!pos) return null;

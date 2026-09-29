@@ -25,7 +25,7 @@ export function Skills() {
       : skillGroups.filter((g) => g.label === activeFilter);
 
   return (
-    <section id="skills" className="py-14 border-t border-slate-800/80">
+    <section id="skills" className="py-[70px] border-t border-slate-800/80">
       {/* Header Row */}
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-10">
         <SectionHeader

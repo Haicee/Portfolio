@@ -5,7 +5,7 @@ import { Terminal, Layers, Sparkles, Smartphone } from "lucide-react";
 
 export function About() {
   return (
-    <section id="about" className="py-14 border-t border-slate-800/80">
+    <section id="about" className="py-[70px] border-t border-slate-800/80">
       <SectionHeader
         number="01"
         title="about"
@@ -18,7 +18,7 @@ export function About() {
         </p>
 
         <p className="mt-6 text-base sm:text-lg sm:leading-loose leading-relaxed text-slate-400">
-          I enjoy bridging the gap between design and engineering. Whether it is translating a Figma interface into pixel-perfect React components or architecting an offline-capable mobile app in Flutter, I prioritize code maintainability, clean state management, and intuitive user experiences.
+          I like making sure design and code work together well. Whether it's turning a Figma design into a clean React app or building a mobile app that works without internet, I focus on keeping code easy to update, managing state clearly, and making sure users have a smooth experience.
         </p>
       </div>
     </section>

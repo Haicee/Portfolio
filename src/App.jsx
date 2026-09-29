@@ -9,11 +9,13 @@ import { Certificates } from "./components/sections/Certificates";
 import { Projects } from "./components/sections/Projects";
 import { AllProjectsPage } from "./components/sections/AllProjectsPage";
 import { Contact } from "./components/sections/Contact";
+import { Recommendations } from "./components/sections/Recommendations";
+import { GithubSection } from "./components/sections/Github";
 import { useActiveSection } from "./hooks/useActiveSection";
 
 function App() {
   const [viewState, setViewState] = useState("main"); // "main" | "all-projects"
-  const sectionIds = ["hero", "about", "skills", "certificates", "experience", "contact"];
+  const sectionIds = ["hero", "about", "skills", "certificates", "experience", "recommendations", "github", "contact"];
   const scrollActiveSection = useActiveSection(sectionIds, 150);
 
   // If in all-projects view, keep "experience" highlighted in navbar
@@ -63,7 +65,6 @@ function App() {
                 </button>
               </div>
               <AllProjectsPage onBack={handleBackToMain} />
-              <Contact />
               <Footer />
             </div>
           ) : (
@@ -73,6 +74,8 @@ function App() {
               <Skills />
               <Certificates />
               <Projects onViewAll={handleViewAllProjects} />
+              <Recommendations />
+              <GithubSection />
               <Contact />
               <Footer />
             </>
