@@ -1,16 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { navItems, personalInfo } from "../../data/portfolioData";
 import { Mail, Download, Menu, X } from "lucide-react";
 import cvFile from "../../assets/resume/FULL STACK DEVELOPER- MARC PAUL SUALOG.pdf";
-
+import { animateMobileMenuOpen, animateMobileMenuClose } from "../../animations/projectAnimations";
 
 export function MobileHeader({ activeSection, onNavClick }) {
   const [isOpen, setIsOpen] = useState(false);
+  const panelRef = useRef(null);
 
   const handleLinkClick = () => {
-    setIsOpen(false);
-    if (onNavClick) onNavClick();
+    animateMobileMenuClose(panelRef, () => {
+      setIsOpen(false);
+      if (onNavClick) onNavClick();
+    });
   };
+
+  const closeMenu = () => {
+    animateMobileMenuClose(panelRef, () => setIsOpen(false));
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      animateMobileMenuOpen(panelRef);
+    }
+  }, [isOpen]);
 
   return (
     <>
@@ -42,13 +55,13 @@ export function MobileHeader({ activeSection, onNavClick }) {
 
       {/* Slide-over Fullscreen Drawer */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex flex-col bg-[#0b0f17] px-6 py-6 lg:hidden animate-fade-in">
+        <div ref={panelRef} className="fixed inset-0 z-50 flex flex-col bg-[#0b0f17] px-6 py-6 lg:hidden opacity-0">
           <div className="flex items-center justify-between border-b border-slate-800 pb-4">
             <span className="font-mono text-base font-bold text-slate-100">
               {personalInfo.name}
             </span>
             <button
-              onClick={() => setIsOpen(false)}
+              onClick={closeMenu}
               className="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300"
             >
               <X className="w-5 h-5" />

@@ -1,7 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { X, ExternalLink } from "lucide-react";
+import { useCertModalAnimation, animateCertModalClose } from "../../animations/projectAnimations";
 
 export function LightboxModal({ isOpen, onClose, title, image, details, credentialUrl }) {
+  const backdropRef = useRef(null);
+  const dialogRef = useRef(null);
+  
+  useCertModalAnimation(backdropRef, dialogRef);
+
+  const handleClose = () => {
+    animateCertModalClose(backdropRef, dialogRef, onClose);
+  };
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") onClose();
@@ -18,20 +27,21 @@ export function LightboxModal({ isOpen, onClose, title, image, details, credenti
       document.body.style.overflow = "";
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, handleClose]);
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 animate-fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10">
       {/* Backdrop */}
       <div 
-        onClick={onClose}
+        ref={backdropRef}
+        onClick={handleClose}
         className="absolute inset-0 bg-slate-950/85 backdrop-blur-md transition-opacity"
       ></div>
 
       {/* Modal Dialog */}
-      <div className="relative z-10 max-w-4xl w-full bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+      <div ref={dialogRef} className="relative z-10 max-w-4xl w-full bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-900/90">
           <div>
@@ -45,7 +55,7 @@ export function LightboxModal({ isOpen, onClose, title, image, details, credenti
             )}
           </div>
           <button 
-            onClick={onClose}
+            onClick={handleClose}
             className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
           >
             <X className="w-5 h-5" />
@@ -97,7 +107,7 @@ export function LightboxModal({ isOpen, onClose, title, image, details, credenti
             </a>
           ) : (
             <button 
-              onClick={onClose}
+              onClick={handleClose}
               className="px-4 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors"
             >
               Close

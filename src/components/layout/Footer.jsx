@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useRef } from "react";
 import { personalInfo } from "../../data/portfolioData";
 import { Heart } from "lucide-react";
+import { useFooterReveal } from "../../animations/sectionAnimations";
 
 export function Footer() {
+  const footerRef = useRef(null);
+  useFooterReveal(footerRef);
+
   return (
-    <footer className="border-t border-slate-800/80 pt-10 text-center">
+    <footer ref={footerRef} className="border-t border-slate-800/80 pt-10 text-center">
       {/* Neon Cyan Accent Line */}
       <div className="mx-auto mb-8 h-px w-24 bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
 

@@ -1,8 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { GitHubCalendar } from "react-github-calendar";
 import { SectionHeader } from "../ui/SectionHeader";
+import { useSectionReveal } from "../../animations/sectionAnimations";
 
 export function GithubSection() {
+  const containerRef = useRef(null);
+  useSectionReveal(containerRef);
+
   const calendarContainerRef = useRef(null);
 
   const [blockSize, setBlockSize] = useState(12);
@@ -87,15 +91,18 @@ export function GithubSection() {
     <section
       id="github"
       className="py-[70px] border-t border-slate-800/80"
+      ref={containerRef}
     >
-      <SectionHeader
-        number="06"
-        title="github"
-        subtitle="My open source contributions and coding activity."
-      />
+      <div className="reveal-heading reveal-line">
+        <SectionHeader
+          number="06"
+          title="github"
+          subtitle="My open source contributions and coding activity."
+        />
+      </div>
 
       {/* Clean section — uses the portfolio's existing background */}
-      <div className="mt-10">
+      <div className="mt-10 reveal-content">
         <div className="flex flex-col items-center">
 
           {/* GitHub Header */}

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { skillGroups } from "../../data/portfolioData";
 import { SectionHeader } from "../ui/SectionHeader";
+import { useSectionReveal } from "../../animations/sectionAnimations";
 
 const LEVEL_STYLES = {
   Advanced: "bg-cyan-500/10 text-cyan-400 border-cyan-500/25",
@@ -16,6 +17,8 @@ const LEVEL_SHORT = {
 
 export function Skills() {
   const [activeFilter, setActiveFilter] = useState("All");
+  const containerRef = useRef(null);
+  useSectionReveal(containerRef, { stagger: 0.1 });
 
   const filterLabels = ["All", ...skillGroups.map((g) => g.label)];
 
@@ -25,9 +28,9 @@ export function Skills() {
       : skillGroups.filter((g) => g.label === activeFilter);
 
   return (
-    <section id="skills" className="py-[70px] border-t border-slate-800/80">
+    <section id="skills" className="py-[70px] border-t border-slate-800/80" ref={containerRef}>
       {/* Header Row */}
-      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-10">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-10 reveal-heading reveal-line">
         <SectionHeader
           number="02"
           title="Tech Stack"
@@ -56,7 +59,7 @@ export function Skills() {
         {visibleGroups.map((group, i) => (
           <div
             key={group.id}
-            className="relative flex flex-col sm:flex-row sm:items-start gap-5 rounded-xl border border-slate-800/70 bg-slate-900/30 px-6 py-5 overflow-hidden transition-all duration-300 hover:border-slate-700/80 hover:bg-slate-900/50"
+            className="reveal-item relative flex flex-col sm:flex-row sm:items-start gap-5 rounded-xl border border-slate-800/70 bg-slate-900/30 px-6 py-5 overflow-hidden transition-all duration-300 hover:border-slate-700/80 hover:bg-slate-900/50 hover:-translate-y-1"
           >
             {/* Left — Category Info */}
             <div className="sm:w-52 shrink-0">

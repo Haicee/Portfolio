@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useRef } from "react";
 import { personalInfo } from "../../data/portfolioData";
 import { Mail, ArrowDown, Code2 } from "lucide-react";
 import { GithubIcon, LinkedinIcon, FacebookIcon, InstagramIcon } from "../ui/SocialIcons";
 import profileImg from "../../assets/profile/profile.png";
+import { useHeroAnimation } from "../../animations/heroAnimations";
 
 export function Hero({ onOpenContact }) {
+  const containerRef = useRef(null);
+  useHeroAnimation(containerRef);
+
   const getSocialIcon = (iconName) => {
     switch (iconName) {
       case "Github": return <GithubIcon className="w-4 h-4" />;
@@ -16,7 +20,7 @@ export function Hero({ onOpenContact }) {
   };
 
   return (
-    <section id="hero" className="relative pt-6 pb-16 sm:py-16">
+    <section id="hero" className="relative pt-6 pb-16 sm:py-16" ref={containerRef}>
       {/* Hero Card Container matching Figma */}
       <div className="relative overflow-hidden rounded-3xl border border-slate-700/60 bg-gradient-to-br from-slate-900/90 via-[#0e1422] to-slate-950 p-6 sm:p-10 shadow-2xl">
 
@@ -30,28 +34,28 @@ export function Hero({ onOpenContact }) {
           <div className="lg:col-span-7 flex flex-col justify-center">
 
             {/* Tech Monospace Greeting */}
-            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 font-jakarta text-xs text-cyan-300">
+            <div className="hero-badge inline-flex w-fit items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 font-jakarta text-xs text-cyan-300">
               <Code2 className="w-3.5 h-3.5 text-cyan-400" />
               <span>Need Help?</span>
             </div>
 
-            <h1 className="mt-5 text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
+            <h1 className="hero-title mt-5 text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
               Hi, I'm{" "}
               <span className="bg-gradient-to-r from-cyan-400 via-teal-300 to-indigo-400 bg-clip-text text-transparent">
                 {personalInfo.name}
               </span>
             </h1>
 
-            <p className="mt-2 font-mono text-base font-semibold text-slate-300">
+            <p className="hero-subtitle mt-2 font-mono text-base font-semibold text-slate-300">
               {personalInfo.title}
             </p>
 
-            <p className="mt-4 text-sm sm:text-base leading-relaxed text-slate-400 max-w-lg">
+            <p className="hero-description mt-4 text-sm sm:text-base leading-relaxed text-slate-400 max-w-lg">
               {personalInfo.tagline}
             </p>
 
             {/* Social Icons Row */}
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="hero-socials mt-8 flex flex-wrap items-center gap-3">
               {personalInfo.socials.map((social, index) => (
                 <a
                   key={index}
@@ -68,7 +72,7 @@ export function Hero({ onOpenContact }) {
             </div>
 
             {/* CTA Buttons */}
-            <div className="mt-8 flex flex-wrap items-center gap-4">
+            <div className="hero-cta mt-8 flex flex-wrap items-center gap-4">
               <a
                 href="#experience"
                 className="inline-flex items-center gap-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 px-5 py-2.5 font-mono text-xs font-bold text-slate-950 transition-all hover:shadow-[0_0_20px_rgba(6,182,212,0.4)]"
@@ -94,7 +98,7 @@ export function Hero({ onOpenContact }) {
               <img
                 src={profileImg}
                 alt={personalInfo.name}
-                className="relative z-10 w-full max-h-[460px] sm:max-h-[500px] object-contain object-bottom opacity-75 hover:opacity-100 transition-opacity duration-300 drop-shadow-2xl"
+                className="hero-profile relative z-10 w-full max-h-[460px] sm:max-h-[500px] object-contain object-bottom opacity-75 hover:opacity-100 transition-opacity duration-300 drop-shadow-2xl"
               />
             </div>
           </div>

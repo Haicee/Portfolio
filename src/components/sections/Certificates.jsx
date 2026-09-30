@@ -1,30 +1,42 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { certificates } from "../../data/portfolioData";
 import { SectionHeader } from "../ui/SectionHeader";
 import { Award, ExternalLink, X, CheckCircle2, QrCode, ChevronLeft, ChevronRight } from "lucide-react";
+import { useSectionReveal } from "../../animations/sectionAnimations";
+import { useCertModalAnimation, animateCertModalClose } from "../../animations/projectAnimations";
 
 /* ─── Certificate Modal ───────────────────────────────────────────── */
 function CertModal({ cert, onClose }) {
+  const backdropRef = useRef(null);
+  const dialogRef = useRef(null);
+  
+  useCertModalAnimation(backdropRef, dialogRef);
+
+  const handleClose = () => {
+    animateCertModalClose(backdropRef, dialogRef, onClose);
+  };
+
   useEffect(() => {
-    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+    const onKey = (e) => { if (e.key === "Escape") handleClose(); };
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKey);
     };
-  }, [onClose]);
+  }, [handleClose]);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8">
       {/* Backdrop */}
       <div
-        onClick={onClose}
+        ref={backdropRef}
+        onClick={handleClose}
         className="absolute inset-0 bg-slate-950/90 backdrop-blur-md"
       />
 
       {/* Dialog */}
-      <div className="relative z-10 w-full max-w-lg bg-slate-900 border border-slate-700/70 rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+      <div ref={dialogRef} className="relative z-10 w-full max-w-lg bg-slate-900 border border-slate-700/70 rounded-2xl shadow-2xl overflow-hidden flex flex-col">
         {/* Top accent bar */}
         <div className="h-1 w-full bg-gradient-to-r from-cyan-500 via-indigo-500 to-cyan-500" />
 
@@ -44,7 +56,7 @@ function CertModal({ cert, onClose }) {
             </div>
           </div>
           <button
-            onClick={onClose}
+            onClick={handleClose}
             className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors shrink-0 ml-3"
           >
             <X className="w-5 h-5" />
@@ -121,7 +133,7 @@ function CertModal({ cert, onClose }) {
             </a>
           ) : (
             <button
-              onClick={onClose}
+              onClick={handleClose}
               className="px-4 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors"
             >
               Close
@@ -221,6 +233,9 @@ function CertCard({ cert, position, onClick }) {
 export function Certificates() {
   const [activeIdx, setActiveIdx] = useState(0);
   const [selectedCert, setSelectedCert] = useState(null);
+  
+  const containerRef = useRef(null);
+  useSectionReveal(containerRef, { stagger: 0.1 });
 
   const total = certificates.length;
 
@@ -238,8 +253,8 @@ export function Certificates() {
   };
 
   return (
-    <section id="certificates" className="py-[70px] border-t border-slate-800/80">
-      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-10">
+    <section id="certificates" className="py-[70px] border-t border-slate-800/80" ref={containerRef}>
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-10 reveal-heading reveal-line">
         <SectionHeader
           number="03"
           title="certificates"

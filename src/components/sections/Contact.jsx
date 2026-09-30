@@ -11,8 +11,11 @@ import {
   AlertCircle,
   CheckCircle2,
 } from "lucide-react";
+import { useSectionReveal } from "../../animations/sectionAnimations";
 
 export function Contact() {
+  const containerRef = useRef(null);
+  useSectionReveal(containerRef, { stagger: 0.1 });
   const [copied, setCopied] = useState(false);
   const [status, setStatus] = useState("idle");
   // idle | submitting | success | error
@@ -69,25 +72,28 @@ export function Contact() {
     <section
       id="contact"
       className="py-[77px] border-t border-slate-800/80"
+      ref={containerRef}
     >
-      <SectionHeader
-        number="07"
-        title="connect with me"
-        subtitle="Let's build something exceptional together. Open to full-stack, mobile, and consulting roles."
-      />
+      <div className="reveal-heading reveal-line">
+        <SectionHeader
+          number="07"
+          title="connect with me"
+          subtitle="Let's build something exceptional together. Open to full-stack, mobile, and consulting roles."
+        />
+      </div>
 
       {/* =====================================================
           CONTACT CONTENT
           No outer background/card.
           Uses the existing page background naturally.
       ===================================================== */}
-      <div className="mt-10 w-full">
+      <div className="mt-10 w-full reveal-content">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
           {/* =================================================
               LEFT SIDE
           ================================================= */}
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-5 reveal-item">
 
             {/* Availability Badge */}
             <div
@@ -212,7 +218,7 @@ export function Contact() {
           {/* =================================================
               RIGHT SIDE / FORM
           ================================================= */}
-          <div className="lg:col-span-7 w-full lg:max-w-2xl lg:ml-auto">
+          <div className="lg:col-span-7 w-full lg:max-w-2xl lg:ml-auto reveal-item">
 
             {/* Form Header */}
             <div

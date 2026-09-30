@@ -12,10 +12,12 @@ import { Contact } from "./components/sections/Contact";
 import { Recommendations } from "./components/sections/Recommendations";
 import { GithubSection } from "./components/sections/Github";
 import { useActiveSection } from "./hooks/useActiveSection";
+import { InteractiveBackground } from "./components/ui/InteractiveBackground";
+
+const sectionIds = ["hero", "about", "skills", "certificates", "experience", "recommendations", "github", "contact"];
 
 function App() {
   const [viewState, setViewState] = useState("main"); // "main" | "all-projects"
-  const sectionIds = ["hero", "about", "skills", "certificates", "experience", "recommendations", "github", "contact"];
   const scrollActiveSection = useActiveSection(sectionIds, 150);
 
   // If in all-projects view, keep "experience" highlighted in navbar
@@ -32,8 +34,8 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#0b0f17] text-slate-200 selection:bg-cyan-500 selection:text-white">
-      {/* Subtle Dot Grid Background */}
-      <div className="fixed inset-0 pointer-events-none dot-grid opacity-50 z-0"></div>
+      {/* Interactive Canvas Background */}
+      <InteractiveBackground />
 
       {/* Ambient Lighting Orbs */}
       <div className="fixed top-0 right-1/4 w-[500px] h-[500px] bg-cyan-600/5 rounded-full blur-[140px] pointer-events-none z-0"></div>

@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useRef } from "react";
 import { navItems, personalInfo } from "../../data/portfolioData";
 import { GithubIcon, LinkedinIcon, FacebookIcon, InstagramIcon } from "../ui/SocialIcons";
 import { Mail, ArrowUpRight, Download } from "lucide-react";
 import cvFile from "../../assets/resume/FULL STACK DEVELOPER- MARC PAUL SUALOG.pdf";
-
-
+import { useSidebarEntrance } from "../../animations/sectionAnimations";
 
 export function Sidebar({ activeSection, onNavClick }) {
+  const sidebarRef = useRef(null);
+  useSidebarEntrance(sidebarRef);
+
   const getSocialIcon = (iconName) => {
     switch (iconName) {
       case "Github": return <GithubIcon className="w-4 h-4" />;
@@ -18,7 +20,7 @@ export function Sidebar({ activeSection, onNavClick }) {
   };
 
   return (
-    <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col justify-between border-r border-slate-800/80 bg-[#0c101a]/95 backdrop-blur-xl px-7 py-8 lg:flex">
+    <aside ref={sidebarRef} className="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col justify-between border-r border-slate-800/80 bg-[#0c101a]/95 backdrop-blur-xl px-7 py-8 lg:flex">
       {/* Top Header / Branding */}
       <div>
         <a

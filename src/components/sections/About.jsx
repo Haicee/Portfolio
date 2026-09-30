@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useRef } from "react";
 import { personalInfo } from "../../data/portfolioData";
 import { SectionHeader } from "../ui/SectionHeader";
 import { Terminal, Layers, Sparkles, Smartphone } from "lucide-react";
+import { useSectionReveal } from "../../animations/sectionAnimations";
 
 export function About() {
-  return (
-    <section id="about" className="py-[70px] border-t border-slate-800/80">
-      <SectionHeader
-        number="01"
-        title="about"
-        subtitle="Curious about what's possible. Dedicated to making it real."
-      />
+  const containerRef = useRef(null);
+  useSectionReveal(containerRef);
 
-      <div className="mt-8">
+  return (
+    <section id="about" className="py-[70px] border-t border-slate-800/80" ref={containerRef}>
+      <div className="reveal-heading reveal-line">
+        <SectionHeader
+          number="01"
+          title="about"
+          subtitle="Curious about what's possible. Dedicated to making it real."
+        />
+      </div>
+
+      <div className="mt-8 reveal-content">
         <p className="text-base sm:text-lg sm:leading-loose leading-relaxed text-slate-300">
           {personalInfo.bio}
         </p>

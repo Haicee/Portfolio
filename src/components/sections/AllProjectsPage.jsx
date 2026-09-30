@@ -23,7 +23,7 @@ export function AllProjectsPage({ onBack }) {
   });
 
   return (
-    <div className="py-8 animate-fade-in max-w-4xl mx-auto">
+    <div className="py-8 max-w-4xl mx-auto">
       {/* Top Header matching cyan palette */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
         <div>
