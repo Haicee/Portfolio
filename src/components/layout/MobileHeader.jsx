@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { navItems, personalInfo } from "../../data/portfolioData";
-import { Menu, X, Mail } from "lucide-react";
+import { Mail, Download, Menu, X } from "lucide-react";
+import cvFile from "../../assets/resume/FULL STACK DEVELOPER- MARC PAUL SUALOG.pdf";
+
 
 export function MobileHeader({ activeSection, onNavClick }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,8 +15,8 @@ export function MobileHeader({ activeSection, onNavClick }) {
   return (
     <>
       <header className="sticky top-0 z-40 flex items-center justify-between border-b border-slate-800/80 bg-[#0b0f17]/90 px-6 py-4 backdrop-blur-md lg:hidden">
-        <a 
-          href="#hero" 
+        <a
+          href="#hero"
           onClick={handleLinkClick}
           className="font-mono text-base font-bold text-slate-100"
         >
@@ -59,11 +61,10 @@ export function MobileHeader({ activeSection, onNavClick }) {
                 key={item.id}
                 href={`#${item.id}`}
                 onClick={handleLinkClick}
-                className={`flex items-center justify-between py-2 text-base ${
-                  activeSection === item.id 
-                    ? "text-cyan-400 font-bold" 
-                    : "text-slate-300 hover:text-white"
-                }`}
+                className={`flex items-center justify-between py-2 text-base ${activeSection === item.id
+                  ? "text-cyan-400 font-bold"
+                  : "text-slate-300 hover:text-white"
+                  }`}
               >
                 <span>{item.number} — {item.label}</span>
                 {activeSection === item.id && (
@@ -75,12 +76,20 @@ export function MobileHeader({ activeSection, onNavClick }) {
 
           <div className="mt-auto border-t border-slate-800 pt-6">
             <p className="font-mono text-xs text-slate-500">Contact</p>
-            <a 
+            <a
               href={`mailto:${personalInfo.email}`}
               className="mt-2 flex items-center gap-2 font-mono text-sm text-cyan-400"
             >
               <Mail className="w-4 h-4" />
               <span>{personalInfo.email}</span>
+            </a>
+            <a
+              href={cvFile}
+              download
+              className="mt-2 flex items-center gap-2 font-mono text-sm text-cyan-400"
+            >
+              <Download className="w-4 h-4 text-cyan-400" />
+              <span>Resume</span>
             </a>
           </div>
         </div>

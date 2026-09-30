@@ -13,7 +13,7 @@ export function SectionHeader({ number, title, subtitle }) {
         </h2>
       </div>
       {subtitle && (
-        <p className="mt-2 text-sm text-slate-400 font-sans max-w-xl">
+        <p className="mt-2 text-sm text-slate-400 font-sans max-w-1xl">
           {subtitle}
         </p>
       )}

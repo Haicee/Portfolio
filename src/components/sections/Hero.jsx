@@ -1,7 +1,7 @@
 import React from "react";
 import { personalInfo } from "../../data/portfolioData";
 import { Mail, ArrowDown, Code2 } from "lucide-react";
-import { GithubIcon, LinkedinIcon, FacebookIcon, TwitterIcon } from "../ui/SocialIcons";
+import { GithubIcon, LinkedinIcon, FacebookIcon, InstagramIcon } from "../ui/SocialIcons";
 import profileImg from "../../assets/profile/profile.png";
 
 export function Hero({ onOpenContact }) {
@@ -10,7 +10,7 @@ export function Hero({ onOpenContact }) {
       case "Github": return <GithubIcon className="w-4 h-4" />;
       case "Linkedin": return <LinkedinIcon className="w-4 h-4" />;
       case "Facebook": return <FacebookIcon className="w-4 h-4" />;
-      case "Twitter": return <TwitterIcon className="w-4 h-4" />;
+      case "Instagram": return <InstagramIcon className="w-4 h-4" />;
       default: return <Mail className="w-4 h-4" />;
     }
   };
@@ -30,7 +30,7 @@ export function Hero({ onOpenContact }) {
           <div className="lg:col-span-7 flex flex-col justify-center">
 
             {/* Tech Monospace Greeting */}
-            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 font-mono text-xs text-cyan-300">
+            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 font-jakarta text-xs text-cyan-300">
               <Code2 className="w-3.5 h-3.5 text-cyan-400" />
               <span>Need Help?</span>
             </div>

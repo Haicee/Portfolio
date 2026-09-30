@@ -1,21 +1,68 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { GitHubCalendar } from "react-github-calendar";
 import { SectionHeader } from "../ui/SectionHeader";
 
 export function GithubSection() {
+  const calendarContainerRef = useRef(null);
+
   const [blockSize, setBlockSize] = useState(12);
+  const [blockMargin, setBlockMargin] = useState(5);
+  const [fontSize, setFontSize] = useState(12);
 
   useEffect(() => {
-    const handleResize = () => {
-      setBlockSize(window.innerWidth < 640 ? 9 : 12);
+    const container = calendarContainerRef.current;
+
+    if (!container) return;
+
+    const updateCalendarSize = () => {
+      const width = container.clientWidth;
+
+      let margin;
+      let textSize;
+
+      // Smaller screens
+      if (width < 420) {
+        margin = 2;
+        textSize = 10;
+      } else if (width < 640) {
+        margin = 3;
+        textSize = 10;
+      } else if (width < 900) {
+        margin = 4;
+        textSize = 11;
+      } else {
+        margin = 5;
+        textSize = 12;
+      }
+
+      /*
+       * GitHub's calendar is approximately 53 weeks wide.
+       *
+       * Calculate the largest block size that fits
+       * inside the available container width.
+       */
+      const numberOfWeeks = 53;
+
+      const calculatedSize = Math.floor(
+        (width - numberOfWeeks * margin) / numberOfWeeks
+      );
+
+      // Keep blocks within a reasonable visual range.
+      const size = Math.max(4, Math.min(12, calculatedSize));
+
+      setBlockSize(size);
+      setBlockMargin(margin);
+      setFontSize(textSize);
     };
 
-    handleResize();
+    updateCalendarSize();
 
-    window.addEventListener("resize", handleResize);
+    const resizeObserver = new ResizeObserver(updateCalendarSize);
+
+    resizeObserver.observe(container);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      resizeObserver.disconnect();
     };
   }, []);
 
@@ -47,17 +94,12 @@ export function GithubSection() {
         subtitle="My open source contributions and coding activity."
       />
 
-      <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900/90 via-[#0e1526] to-slate-950 p-6 sm:p-10 shadow-2xl mt-10">
+      {/* Clean section — uses the portfolio's existing background */}
+      <div className="mt-10">
+        <div className="flex flex-col items-center">
 
-        {/* Glow Backdrops */}
-        <div className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-cyan-500/10 blur-3xl" />
-
-        <div className="pointer-events-none absolute -bottom-24 -left-24 h-80 w-80 rounded-full bg-indigo-500/10 blur-3xl" />
-
-        <div className="relative z-10 flex flex-col items-center">
-
-          {/* Header */}
-          <div className="flex items-center gap-3 mb-8 w-full justify-between">
+          {/* GitHub Header */}
+          <div className="flex items-center justify-between w-full mb-7">
 
             <div className="flex items-center gap-2">
 
@@ -80,22 +122,36 @@ export function GithubSection() {
               href="https://github.com/Haicee"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-[10px] text-cyan-400 hover:text-cyan-300 uppercase tracking-widest transition-colors flex items-center gap-1.5"
+              className="
+                font-mono
+                text-[10px]
+                text-cyan-400
+                hover:text-cyan-300
+                uppercase
+                tracking-widest
+                transition-colors
+                flex
+                items-center
+                gap-1.5
+              "
             >
               View Profile ↗
             </a>
           </div>
 
-          {/* GitHub Calendar */}
-          <div className="w-full overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
-            <div className="min-w-fit flex justify-center">
+          {/* Responsive Calendar */}
+          <div
+            ref={calendarContainerRef}
+            className="w-full overflow-hidden"
+          >
+            <div className="w-full flex justify-center">
               <GitHubCalendar
                 username="Haicee"
                 blockSize={blockSize}
-                blockMargin={5}
+                blockMargin={blockMargin}
                 colorScheme="dark"
                 theme={explicitTheme}
-                fontSize={12}
+                fontSize={fontSize}
               />
             </div>
           </div>

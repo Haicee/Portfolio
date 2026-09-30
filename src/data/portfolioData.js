@@ -22,23 +22,21 @@ import ims1 from '../assets/projects/ims1.png';
 import ims2 from '../assets/projects/ims2.png';
 
 export const personalInfo = {
-  name: "Marc S.",
+  name: "Marc Paul Sualog",
   title: "Junior Full Stack Developer",
-  tagline: "Bringing Ideas To Life Through Tech And Design",
-  bio: "Hi, I'm Marc! A passionate Junior Full Stack Developer dedicated to crafting seamless web and mobile experiences. With a strong foundation in modern frontend and backend technologies, I focus on building scalable, performant, and user-centric applications that solve real-world problems.",
+  tagline: "Bringing ideas to life through tech and design",
+  bio: "I'm Marc, a Full Stack Developer passionate about turning ideas into useful digital experiences. I'm someone who genuinely enjoys helping others. I believe great technology isn't just about writing good code; it's about creating something useful, solving meaningful problems, and making people's lives easier.",
   status: "Available for new projects & opportunities",
   location: "Philippines",
   email: "marcpaulsualog0@gmail.com",
   socials: [
-    { label: "GitHub", url: "https://github.com", icon: "Github" },
-    { label: "LinkedIn", url: "https://linkedin.com", icon: "Linkedin" },
-    { label: "Facebook", url: "https://facebook.com", icon: "Facebook" },
-    { label: "Twitter / X", url: "https://x.com", icon: "Twitter" },
+    { label: "GitHub", url: "https://github.com/Haicee", icon: "Github" },
+    { label: "LinkedIn", url: "https://www.linkedin.com/in/marc-paul-sualog-55879b439", icon: "LinkedIn" },
+    { label: "Instagram", url: "https://www.instagram.com/haiiice_/", icon: "Instagram" },
   ]
 };
 
 export const navItems = [
-  { id: "hero", number: "00", label: "intro" },
   { id: "about", number: "01", label: "about" },
   { id: "skills", number: "02", label: "skills" },
   { id: "certificates", number: "03", label: "certificates" },

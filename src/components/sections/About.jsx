@@ -9,7 +9,7 @@ export function About() {
       <SectionHeader
         number="01"
         title="about"
-        subtitle="Background, technical philosophy, and what drives my work."
+        subtitle="Curious about what's possible. Dedicated to making it real."
       />
 
       <div className="mt-8">
@@ -18,7 +18,7 @@ export function About() {
         </p>
 
         <p className="mt-6 text-base sm:text-lg sm:leading-loose leading-relaxed text-slate-400">
-          I like making sure design and code work together well. Whether it's turning a Figma design into a clean React app or building a mobile app that works without internet, I focus on keeping code easy to update, managing state clearly, and making sure users have a smooth experience.
+          I like making sure design and code work together well. My goal is to keep learning, keep building, and create things that people actually find useful.
         </p>
       </div>
     </section>

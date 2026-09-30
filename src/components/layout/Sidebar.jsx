@@ -1,15 +1,18 @@
 import React from "react";
 import { navItems, personalInfo } from "../../data/portfolioData";
-import { Mail, ArrowUpRight } from "lucide-react";
-import { GithubIcon, LinkedinIcon, FacebookIcon, TwitterIcon } from "../ui/SocialIcons";
+import { GithubIcon, LinkedinIcon, FacebookIcon, InstagramIcon } from "../ui/SocialIcons";
+import { Mail, ArrowUpRight, Download } from "lucide-react";
+import cvFile from "../../assets/resume/FULL STACK DEVELOPER- MARC PAUL SUALOG.pdf";
+
+
 
 export function Sidebar({ activeSection, onNavClick }) {
   const getSocialIcon = (iconName) => {
     switch (iconName) {
       case "Github": return <GithubIcon className="w-4 h-4" />;
-      case "Linkedin": return <LinkedinIcon className="w-4 h-4" />;
+      case "LinkedIn": return <LinkedinIcon className="w-4 h-4" />;
       case "Facebook": return <FacebookIcon className="w-4 h-4" />;
-      case "Twitter": return <TwitterIcon className="w-4 h-4" />;
+      case "Instagram": return <InstagramIcon className="w-4 h-4" />;
       default: return <ArrowUpRight className="w-4 h-4" />;
     }
   };
@@ -21,7 +24,7 @@ export function Sidebar({ activeSection, onNavClick }) {
         <a
           href="#hero"
           onClick={onNavClick}
-          className="group block font-mono text-lg font-bold tracking-tight text-slate-100 hover:text-cyan-400 transition-colors"
+          className="group block font-jakarta text-lg font-bold tracking-tight text-slate-100 hover:text-cyan-400 transition-colors"
         >
           <span>{personalInfo.name}</span>
           <span className="text-cyan-400 font-normal ml-1">/&gt;</span>
@@ -50,8 +53,8 @@ export function Sidebar({ activeSection, onNavClick }) {
                 href={`#${item.id}`}
                 onClick={onNavClick}
                 className={`group flex items-center justify-between py-2 px-3 rounded-lg transition-all duration-200 ${isActive
-                    ? "bg-cyan-500/10 text-cyan-300 font-semibold border-l-2 border-cyan-400"
-                    : "text-slate-400 hover:text-slate-100 hover:bg-slate-800/50"
+                  ? "bg-cyan-500/10 text-cyan-300 font-semibold border-l-2 border-cyan-400"
+                  : "text-slate-400 hover:text-slate-100 hover:bg-slate-800/50"
                   }`}
               >
                 <div className="flex items-center gap-2.5">
@@ -81,6 +84,16 @@ export function Sidebar({ activeSection, onNavClick }) {
           <Mail className="w-3.5 h-3.5 text-cyan-400" />
           <span className="truncate">{personalInfo.email}</span>
         </a>
+
+        <a
+          href={cvFile}
+          download
+          className="mt-4 flex items-center gap-2 font-mono text-xs text-slate-400 hover:text-cyan-400 transition-colors"
+        >
+          <Download className="w-3.5 h-3.5 text-cyan-400" />
+          <span>Resume</span>
+        </a>
+
 
         {/* Social Icons Row */}
         <div className="mt-5 flex items-center gap-2">

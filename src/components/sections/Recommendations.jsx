@@ -24,7 +24,7 @@ export function Recommendations() {
             <Quote className="w-8 h-8 text-slate-700 group-hover:text-cyan-500/40 transition-colors mb-6" />
 
             {/* Testimonial Text */}
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-8">
+            <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-8 italic">
               {rec.quote}
             </p>
 

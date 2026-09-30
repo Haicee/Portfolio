@@ -30,6 +30,7 @@ export function Contact() {
   const handleCopyEmail = async () => {
     try {
       await navigator.clipboard.writeText(personalInfo.email);
+
       setCopied(true);
 
       setTimeout(() => {
@@ -40,27 +41,11 @@ export function Contact() {
     }
   };
 
-  /**
-   * Native form submission.
-   *
-   * IMPORTANT:
-   * We intentionally DO NOT preventDefault().
-   * The browser submits directly to SilentForms.
-   *
-   * The form targets a hidden iframe, so the user
-   * stays on this page instead of being redirected.
-   */
   const handleSubmit = () => {
     submittedRef.current = true;
     setStatus("submitting");
   };
 
-  /**
-   * SilentForms loads its response into the hidden iframe.
-   *
-   * We cannot read the cross-origin response itself,
-   * but we can detect that the iframe finished loading.
-   */
   const handleIframeLoad = () => {
     if (!submittedRef.current) {
       return;
@@ -70,14 +55,20 @@ export function Contact() {
 
     setStatus("success");
 
-    // Reset form after successful submission
     formRef.current?.reset();
+
+    // Reset textarea height after submission
+    const textarea = formRef.current?.querySelector("textarea");
+
+    if (textarea) {
+      textarea.style.height = "";
+    }
   };
 
   return (
     <section
       id="contact"
-      className="py-[70px] border-t border-slate-800/80"
+      className="py-[77px] border-t border-slate-800/80"
     >
       <SectionHeader
         number="07"
@@ -85,44 +76,108 @@ export function Contact() {
         subtitle="Let's build something exceptional together. Open to full-stack, mobile, and consulting roles."
       />
 
-      <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900/90 via-[#0e1526] to-slate-950 p-6 sm:p-10 shadow-2xl">
-        {/* Glow Backdrops */}
-        <div className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-cyan-500/10 blur-3xl" />
+      {/* =====================================================
+          CONTACT CONTENT
+          No outer background/card.
+          Uses the existing page background naturally.
+      ===================================================== */}
+      <div className="mt-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
-        <div className="pointer-events-none absolute -bottom-24 -left-24 h-80 w-80 rounded-full bg-indigo-500/10 blur-3xl" />
+          {/* =================================================
+              LEFT SIDE
+          ================================================= */}
+          <div className="lg:col-span-5">
 
-        <div className="relative z-10 grid gap-10 lg:grid-cols-12 items-start">
-          {/* LEFT COLUMN */}
-          <div className="lg:col-span-5 flex flex-col justify-between">
-            <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 font-mono text-xs text-cyan-300 mb-4">
-                <MessageSquare className="w-3.5 h-3.5 text-cyan-400" />
+            {/* Availability Badge */}
+            <div
+              className="
+                inline-flex
+                items-center
+                gap-2
+                rounded-full
+                border
+                border-cyan-500/30
+                bg-cyan-500/5
+                px-3
+                py-1
+                font-mono
+                text-xs
+                text-cyan-300
+                mb-5
+              "
+            >
+              <MessageSquare className="w-3.5 h-3.5 text-cyan-400" />
 
-                <span>
-                  Open for Work & Collaboration
-                </span>
-              </div>
-
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
-                Have a project in mind or want to collaborate?
-              </h3>
-
-              <p className="mt-3 text-xs sm:text-sm text-slate-400 leading-relaxed">
-                Whether you need a cross-platform Flutter
-                application, a robust React & Laravel web
-                system, or a technical consultation, feel free
-                to send a message directly.
-              </p>
+              <span>Open for Work & Collaboration</span>
             </div>
 
-            {/* Optional email card */}
+            {/* Heading */}
+            <h3
+              className="
+                max-w-xl
+                text-2xl
+                sm:text-3xl
+                lg:text-4xl
+                font-extrabold
+                text-white
+                leading-[1.1]
+                tracking-tight
+              "
+            >
+              Have a project in mind or want to collaborate?
+            </h3>
+
+            {/* Description */}
+            <p
+              className="
+                max-w-xl
+                mt-4
+                text-sm
+                sm:text-[15px]
+                text-slate-400
+                leading-relaxed
+              "
+            >
+              Whether you need a cross-platform Flutter application,
+              a robust React & Laravel web system, or a technical
+              consultation, feel free to send a message directly.
+            </p>
+
+            {/* Email */}
             <div className="mt-8">
               <button
                 type="button"
                 onClick={handleCopyEmail}
-                className="group inline-flex items-center gap-3 rounded-xl border border-slate-800 bg-slate-950/50 px-4 py-3 text-left transition-all hover:border-cyan-500/40 hover:bg-cyan-500/5"
+                className="
+                  group
+                  inline-flex
+                  max-w-full
+                  items-center
+                  gap-3
+                  text-left
+                  transition-colors
+                "
               >
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-cyan-500/10 text-cyan-400">
+                {/* Icon */}
+                <div
+                  className="
+                    flex
+                    h-10
+                    w-10
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-lg
+                    border
+                    border-slate-800
+                    bg-slate-950/40
+                    text-cyan-400
+                    transition-colors
+                    group-hover:border-cyan-500/40
+                    group-hover:bg-cyan-500/5
+                  "
+                >
                   {copied ? (
                     <Check className="w-4 h-4" />
                   ) : (
@@ -130,12 +185,23 @@ export function Contact() {
                   )}
                 </div>
 
-                <div>
+                {/* Email Text */}
+                <div className="min-w-0">
                   <div className="font-mono text-[10px] uppercase tracking-wider text-slate-500">
                     {copied ? "Copied!" : "Prefer email?"}
                   </div>
 
-                  <div className="font-mono text-xs text-slate-300 group-hover:text-cyan-300 transition-colors">
+                  <div
+                    className="
+                      mt-0.5
+                      font-mono
+                      text-xs
+                      text-slate-300
+                      group-hover:text-cyan-300
+                      transition-colors
+                      truncate
+                    "
+                  >
                     {personalInfo.email}
                   </div>
                 </div>
@@ -143,9 +209,26 @@ export function Contact() {
             </div>
           </div>
 
-          {/* RIGHT COLUMN */}
-          <div className="lg:col-span-7 bg-slate-900/80 border border-slate-800 rounded-2xl p-6 sm:p-7 shadow-xl">
-            <div className="font-mono text-xs text-cyan-400 font-semibold uppercase tracking-wider mb-5">
+          {/* =================================================
+              RIGHT SIDE / FORM
+          ================================================= */}
+          <div className="lg:col-span-7 w-full lg:max-w-2xl lg:ml-auto">
+
+            {/* Form Header */}
+            <div
+              className="
+                pb-4
+                mb-5
+                border-b
+                border-slate-800/80
+                font-mono
+                text-xs
+                text-cyan-400
+                font-semibold
+                uppercase
+                tracking-wider
+              "
+            >
               // Send a Direct Message
             </div>
 
@@ -155,13 +238,13 @@ export function Contact() {
               method="POST"
               target="silentforms-response"
               onSubmit={handleSubmit}
-              className="space-y-4"
+              className="space-y-5"
             >
               {/* SilentForms Access Key */}
               <input
                 type="hidden"
                 name="accessKey"
-                value="6cddf514dfe8708009f5ec44538f95c590db2731b567fad16e595f87187ee565"
+                value="YOUR_SILENTFORMS_ACCESS_KEY"
               />
 
               {/* Honeypot */}
@@ -171,15 +254,29 @@ export function Contact() {
                 tabIndex={-1}
                 autoComplete="off"
                 aria-hidden="true"
-                className="absolute left-[-9999px] h-px w-px opacity-0"
+                className="
+                  absolute
+                  left-[-9999px]
+                  h-px
+                  w-px
+                  opacity-0
+                "
               />
 
               {/* NAME + EMAIL */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+                {/* Name */}
                 <div>
                   <label
                     htmlFor="contact-name"
-                    className="block font-mono text-[11px] text-slate-300 mb-1.5"
+                    className="
+                      block
+                      font-mono
+                      text-[11px]
+                      text-slate-300
+                      mb-2
+                    "
                   >
                     Your Name{" "}
                     <span className="text-cyan-400">*</span>
@@ -192,14 +289,38 @@ export function Contact() {
                     required
                     autoComplete="name"
                     placeholder="e.g. Alex Rivera"
-                    className="w-full font-mono text-xs bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-2.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500/80 focus:ring-1 focus:ring-cyan-500/80 transition-all"
+                    className="
+                      w-full
+                      font-mono
+                      text-xs
+                      bg-slate-950/50
+                      border
+                      border-slate-800
+                      rounded-lg
+                      px-4
+                      py-3
+                      text-slate-100
+                      placeholder-slate-600
+                      focus:outline-none
+                      focus:border-cyan-500/70
+                      focus:ring-1
+                      focus:ring-cyan-500/30
+                      transition-all
+                    "
                   />
                 </div>
 
+                {/* Email */}
                 <div>
                   <label
                     htmlFor="contact-email"
-                    className="block font-mono text-[11px] text-slate-300 mb-1.5"
+                    className="
+                      block
+                      font-mono
+                      text-[11px]
+                      text-slate-300
+                      mb-2
+                    "
                   >
                     Your Email{" "}
                     <span className="text-cyan-400">*</span>
@@ -212,7 +333,24 @@ export function Contact() {
                     required
                     autoComplete="email"
                     placeholder="e.g. alex@company.com"
-                    className="w-full font-mono text-xs bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-2.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500/80 focus:ring-1 focus:ring-cyan-500/80 transition-all"
+                    className="
+                      w-full
+                      font-mono
+                      text-xs
+                      bg-slate-950/50
+                      border
+                      border-slate-800
+                      rounded-lg
+                      px-4
+                      py-3
+                      text-slate-100
+                      placeholder-slate-600
+                      focus:outline-none
+                      focus:border-cyan-500/70
+                      focus:ring-1
+                      focus:ring-cyan-500/30
+                      transition-all
+                    "
                   />
                 </div>
               </div>
@@ -221,7 +359,13 @@ export function Contact() {
               <div>
                 <label
                   htmlFor="contact-message"
-                  className="block font-mono text-[11px] text-slate-300 mb-1.5"
+                  className="
+                    block
+                    font-mono
+                    text-[11px]
+                    text-slate-300
+                    mb-2
+                  "
                 >
                   Message{" "}
                   <span className="text-cyan-400">*</span>
@@ -231,19 +375,52 @@ export function Contact() {
                   id="contact-message"
                   name="message"
                   required
-                  rows={4}
+                  rows={5}
                   placeholder="Tell me about your project, ideas, or timeline..."
                   onInput={handleMessageInput}
-                  className="w-full min-h-[110px] max-h-[400px] overflow-y-auto font-mono text-xs bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-2.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500/80 focus:ring-1 focus:ring-cyan-500/80 transition-[height] duration-150 resize-none"
+                  className="
+                    w-full
+                    min-h-[130px]
+                    max-h-[400px]
+                    overflow-y-auto
+                    resize-none
+                    font-mono
+                    text-xs
+                    bg-slate-950/50
+                    border
+                    border-slate-800
+                    rounded-lg
+                    px-4
+                    py-3
+                    text-slate-100
+                    placeholder-slate-600
+                    focus:outline-none
+                    focus:border-cyan-500/70
+                    focus:ring-1
+                    focus:ring-cyan-500/30
+                    transition-[height]
+                    duration-150
+                  "
                 />
               </div>
-
 
               {/* SUCCESS */}
               {status === "success" && (
                 <div
                   role="status"
-                  className="flex items-start gap-3 p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 font-mono text-xs text-emerald-400 animate-fade-in"
+                  className="
+                    flex
+                    items-start
+                    gap-3
+                    rounded-lg
+                    border
+                    border-emerald-500/30
+                    bg-emerald-500/5
+                    p-3
+                    font-mono
+                    text-xs
+                    text-emerald-400
+                  "
                 >
                   <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" />
 
@@ -252,7 +429,7 @@ export function Contact() {
                       Message sent successfully.
                     </div>
 
-                    <div className="mt-0.5 text-emerald-400/70">
+                    <div className="mt-1 text-emerald-400/70">
                       Thanks for reaching out. I'll get back to
                       you as soon as possible.
                     </div>
@@ -264,7 +441,19 @@ export function Contact() {
               {status === "error" && (
                 <div
                   role="alert"
-                  className="flex items-start gap-3 p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 font-mono text-xs text-rose-400"
+                  className="
+                    flex
+                    items-start
+                    gap-3
+                    rounded-lg
+                    border
+                    border-rose-500/30
+                    bg-rose-500/5
+                    p-3
+                    font-mono
+                    text-xs
+                    text-rose-400
+                  "
                 >
                   <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
 
@@ -273,7 +462,7 @@ export function Contact() {
                       Something went wrong.
                     </div>
 
-                    <div className="mt-0.5 text-rose-400/70">
+                    <div className="mt-1 text-rose-400/70">
                       Please try again or contact me directly by
                       email.
                     </div>
@@ -285,7 +474,28 @@ export function Contact() {
               <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 disabled:bg-slate-800 disabled:text-slate-500 text-slate-950 font-mono text-xs font-bold transition-all shadow-[0_0_20px_rgba(6,182,212,0.25)] hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] disabled:cursor-not-allowed"
+                className="
+                  w-full
+                  inline-flex
+                  items-center
+                  justify-center
+                  gap-2
+                  px-6
+                  py-3
+                  rounded-lg
+                  bg-cyan-500
+                  hover:bg-cyan-400
+                  disabled:bg-slate-800
+                  disabled:text-slate-500
+                  text-slate-950
+                  font-mono
+                  text-xs
+                  font-bold
+                  transition-all
+                  shadow-[0_0_20px_rgba(6,182,212,0.18)]
+                  hover:shadow-[0_0_25px_rgba(6,182,212,0.3)]
+                  disabled:cursor-not-allowed
+                "
               >
                 {status === "submitting" ? (
                   <>
