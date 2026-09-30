@@ -1,11 +1,12 @@
 import React, { useRef } from "react";
 import { navItems, personalInfo } from "../../data/portfolioData";
 import { GithubIcon, LinkedinIcon, FacebookIcon, InstagramIcon } from "../ui/SocialIcons";
-import { Mail, ArrowUpRight, Download } from "lucide-react";
+import { Mail, ArrowUpRight, Download, Volume2, VolumeX } from "lucide-react";
+
 import cvFile from "../../assets/resume/FULL STACK DEVELOPER- MARC PAUL SUALOG.pdf";
 import { useSidebarEntrance } from "../../animations/sectionAnimations";
 
-export function Sidebar({ activeSection, onNavClick }) {
+export function Sidebar({ activeSection, onNavClick, isMuted, toggleMute }) {
   const sidebarRef = useRef(null);
   useSidebarEntrance(sidebarRef);
 
@@ -90,11 +91,32 @@ export function Sidebar({ activeSection, onNavClick }) {
         <a
           href={cvFile}
           download
-          className="mt-4 flex items-center gap-2 font-mono text-xs text-slate-400 hover:text-cyan-400 transition-colors"
+          className="mt-2 flex items-center gap-2 font-mono text-xs text-slate-400 hover:text-cyan-400 transition-colors"
         >
           <Download className="w-3.5 h-3.5 text-cyan-400" />
           <span>Resume</span>
+
         </a>
+
+        {/* Sound Toggle Button */}
+        <a
+          type="button"
+          onClick={toggleMute}
+          className="sound-toggle mt-2 flex items-center gap-2 rounded-md font-mono text-xs text-slate-400 hover:text-cyan-400 transition-all duration-200 cursor-pointer"
+          aria-label={isMuted ? "Turn sound on" : "Turn sound off"}
+          title={isMuted ? "Turn sound on" : "Turn sound off"}
+        >
+          {isMuted ? (
+            <>
+              <VolumeX className="w-3.5 h-3.5 text-slate-400 transition-colors" />
+            </>
+          ) : (
+            <>
+              <Volume2 className="w-3.5 h-3.5 text-cyan-400 transition-colors" />
+            </>
+          )}
+        </a>
+
 
 
         {/* Social Icons Row */}

@@ -9,7 +9,7 @@ import { useCertModalAnimation, animateCertModalClose } from "../../animations/p
 function CertModal({ cert, onClose }) {
   const backdropRef = useRef(null);
   const dialogRef = useRef(null);
-  
+
   useCertModalAnimation(backdropRef, dialogRef);
 
   const handleClose = () => {
@@ -233,7 +233,7 @@ function CertCard({ cert, position, onClick }) {
 export function Certificates() {
   const [activeIdx, setActiveIdx] = useState(0);
   const [selectedCert, setSelectedCert] = useState(null);
-  
+
   const containerRef = useRef(null);
   useSectionReveal(containerRef, { stagger: 0.1 });
 
@@ -284,7 +284,7 @@ export function Certificates() {
       </div>
 
       {/* Card Stack */}
-      <div className="relative flex items-center justify-center h-72 sm:h-80 select-none overflow-hidden sm:overflow-visible">
+      <div className="relative flex items-center justify-center h-72 sm:h-80 select-none overflow-hidden sm:overflow-visible reveal-content">
         {certificates.map((cert, i) => {
           const pos = getPosition(i);
           if (!pos) return null;

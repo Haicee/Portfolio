@@ -41,7 +41,7 @@ export function Hero({ onOpenContact }) {
 
             <h1 className="hero-title mt-5 text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
               Hi, I'm{" "}
-              <span className="bg-gradient-to-r from-cyan-400 via-teal-300 to-indigo-400 bg-clip-text text-transparent">
+              <span className="typing-name bg-gradient-to-r from-cyan-400 via-teal-300 to-indigo-400 bg-clip-text text-transparent">
                 {personalInfo.name}
               </span>
             </h1>
@@ -75,14 +75,14 @@ export function Hero({ onOpenContact }) {
             <div className="hero-cta mt-8 flex flex-wrap items-center gap-4">
               <a
                 href="#experience"
-                className="inline-flex items-center gap-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 px-5 py-2.5 font-mono text-xs font-bold text-slate-950 transition-all hover:shadow-[0_0_20px_rgba(6,182,212,0.4)]"
+                className="inline-flex items-center gap-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 px-5 py-2.5 font-mono text-xs font-bold text-slate-950 transition-all hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)]"
               >
                 <span>View Projects</span>
                 <ArrowDown className="w-4 h-4" />
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-800/60 hover:bg-slate-800 px-5 py-2.5 font-mono text-xs font-semibold text-slate-200 transition-all"
+                className="inline-flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-800/60 hover:bg-slate-800 px-5 py-2.5 font-mono text-xs font-semibold text-slate-200 transition-all hover:-translate-y-1 hover:shadow-lg"
               >
                 <span>Contact Me</span>
               </a>
@@ -98,7 +98,7 @@ export function Hero({ onOpenContact }) {
               <img
                 src={profileImg}
                 alt={personalInfo.name}
-                className="hero-profile relative z-10 w-full max-h-[460px] sm:max-h-[500px] object-contain object-bottom opacity-75 hover:opacity-100 transition-opacity duration-300 drop-shadow-2xl"
+                className="hero-profile relative z-10 w-full max-h-[460px] sm:max-h-[500px] object-contain object-bottom opacity-75 hover:opacity-100 transition-all duration-300 hover:-translate-y-2 drop-shadow-2xl hover:drop-shadow-[0_20px_30px_rgba(6,182,212,0.3)]"
               />
             </div>
           </div>

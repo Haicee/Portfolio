@@ -15,7 +15,7 @@ function ProjectCard({ project, isExpanded, onToggle, formattedNum, renderTechSt
     <div
       className={`reveal-item group rounded-2xl border transition-all duration-300 flex flex-col justify-between p-6 bg-slate-900/70 backdrop-blur-md ${isExpanded
         ? "border-cyan-500/70 shadow-[0_10px_30px_rgba(6,182,212,0.15)] bg-slate-900/95"
-        : "border-slate-800/80 hover:border-cyan-500/40 hover:shadow-[0_8px_25px_rgba(6,182,212,0.08)] hover:-translate-y-1"
+        : "border-slate-800/80 hover:border-cyan-500/40 hover:shadow-[0_8px_25px_rgba(6,182,212,0.08)] hover:-translate-y-2"
         }`}
     >
       <div>

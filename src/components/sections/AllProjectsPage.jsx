@@ -73,7 +73,7 @@ export function AllProjectsPage({ onBack }) {
           return (
             <div
               key={project.id}
-              className="group rounded-2xl border border-slate-800/80 hover:border-cyan-500/50 transition-all duration-300 flex flex-col justify-between p-6 sm:p-7 bg-slate-900/70 backdrop-blur-md hover:shadow-[0_10px_30px_rgba(6,182,212,0.12)] hover:-translate-y-1"
+              className="group rounded-2xl border border-slate-800/80 hover:border-cyan-500/50 transition-all duration-300 flex flex-col justify-between p-6 sm:p-7 bg-slate-900/70 backdrop-blur-md hover:shadow-[0_10px_30px_rgba(6,182,212,0.12)] hover:-translate-y-2"
             >
               <div>
                 {/* Number & Year Header */}

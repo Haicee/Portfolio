@@ -381,12 +381,12 @@ export function Contact() {
                   id="contact-message"
                   name="message"
                   required
-                  rows={5}
+                  rows={7}
                   placeholder="Tell me about your project, ideas, or timeline..."
                   onInput={handleMessageInput}
                   className="
                     w-full
-                    min-h-[130px]
+                    min-h-[200px]
                     max-h-[400px]
                     overflow-y-auto
                     resize-none

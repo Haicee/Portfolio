@@ -13,12 +13,15 @@ import { Recommendations } from "./components/sections/Recommendations";
 import { GithubSection } from "./components/sections/Github";
 import { useActiveSection } from "./hooks/useActiveSection";
 import { InteractiveBackground } from "./components/ui/InteractiveBackground";
+import { useSoundEffects } from "./utils/soundEffects";
 
 const sectionIds = ["hero", "about", "skills", "certificates", "experience", "recommendations", "github", "contact"];
 
 function App() {
   const [viewState, setViewState] = useState("main"); // "main" | "all-projects"
   const scrollActiveSection = useActiveSection(sectionIds, 150);
+  const { handleMouseOver, handleMouseOut, handleClick, isMuted, toggleMute, } = useSoundEffects();
+
 
   // If in all-projects view, keep "experience" highlighted in navbar
   const activeSection = viewState === "all-projects" ? "experience" : scrollActiveSection;
@@ -33,7 +36,12 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0b0f17] text-slate-200 selection:bg-cyan-500 selection:text-white">
+    <div
+      className="min-h-screen bg-[#0b0f17] text-slate-200 selection:bg-cyan-500 selection:text-white"
+      onMouseOver={handleMouseOver}
+      onMouseOut={handleMouseOut}
+      onClick={handleClick}
+    >
       {/* Interactive Canvas Background */}
       <InteractiveBackground />
 
@@ -45,6 +53,8 @@ function App() {
       <Sidebar
         activeSection={activeSection}
         onNavClick={() => setViewState("main")}
+        isMuted={isMuted}
+        toggleMute={toggleMute}
       />
 
       {/* Mobile Top Header */}
