@@ -98,7 +98,7 @@ export function Hero({ onOpenContact }) {
               <img
                 src={profileImg}
                 alt={personalInfo.name}
-                className="hero-profile relative z-10 w-full max-h-[460px] sm:max-h-[500px] object-contain object-bottom opacity-75 hover:opacity-100 transition-all duration-300 hover:-translate-y-2 drop-shadow-2xl hover:drop-shadow-[0_20px_30px_rgba(6,182,212,0.3)]"
+                className="hero-profile relative z-10 w-full max-h-[460px] sm:max-h-[500px] object-contain object-bottom opacity-0 hover:opacity-100 transition-all duration-300 hover:-translate-y-2 drop-shadow-2xl hover:drop-shadow-[0_20px_30px_rgba(6,182,212,0.3)]"
               />
             </div>
           </div>
