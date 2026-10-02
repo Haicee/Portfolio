@@ -75,6 +75,25 @@ export function Sidebar({ activeSection, onNavClick, isMuted, toggleMute }) {
         </nav>
       </div>
 
+      {/* Sound Toggle Button */}
+      <a
+        type="button"
+        onClick={toggleMute}
+        className="mt-auto sound-toggle pb-5 pl-1 flex items-center gap-2 rounded-md font-mono text-xs text-slate-400 hover:text-cyan-400 transition-all duration-200 cursor-pointer"
+        aria-label={isMuted ? "Turn sound on" : "Turn sound off"}
+        title={isMuted ? "Turn sound on" : "Turn sound off"}
+      >
+        {isMuted ? (
+          <>
+            <VolumeX className="w-3.5 h-3.5 text-slate-400 transition-colors" />
+          </>
+        ) : (
+          <>
+            <Volume2 className="w-3.5 h-3.5 text-cyan-400 transition-colors" />
+          </>
+        )}
+      </a>
+
       {/* Bottom Footer Info & Social Quick-Links */}
       <div className="border-t border-slate-800/80 pt-6">
         <p className="font-mono text-[11px] text-slate-500">
@@ -97,27 +116,6 @@ export function Sidebar({ activeSection, onNavClick, isMuted, toggleMute }) {
           <span>Resume</span>
 
         </a>
-
-        {/* Sound Toggle Button */}
-        <a
-          type="button"
-          onClick={toggleMute}
-          className="sound-toggle mt-2 flex items-center gap-2 rounded-md font-mono text-xs text-slate-400 hover:text-cyan-400 transition-all duration-200 cursor-pointer"
-          aria-label={isMuted ? "Turn sound on" : "Turn sound off"}
-          title={isMuted ? "Turn sound on" : "Turn sound off"}
-        >
-          {isMuted ? (
-            <>
-              <VolumeX className="w-3.5 h-3.5 text-slate-400 transition-colors" />
-            </>
-          ) : (
-            <>
-              <Volume2 className="w-3.5 h-3.5 text-cyan-400 transition-colors" />
-            </>
-          )}
-        </a>
-
-
 
         {/* Social Icons Row */}
         <div className="mt-5 flex items-center gap-2">
