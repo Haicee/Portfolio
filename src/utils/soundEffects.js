@@ -3,14 +3,15 @@ import clickSoundFile from "../assets/sounds/click.m4a";
 import turnonSoundFile from "../assets/sounds/turnon.m4a";
 import { useState } from "react";
 
-
 class SoundFX {
   constructor() {
     this.hoverAudio = null;
     this.clickAudio = null;
     this.turnonAudio = null;
 
-    this.isMuted = false;
+    // Sound is OFF by default
+    this.isMuted = true;
+
     this.lastHoverTarget = null;
     this.audioUnlocked = false;
 
@@ -24,11 +25,13 @@ class SoundFX {
     const savedSoundPreference = localStorage.getItem("sound-enabled");
 
     if (savedSoundPreference === null) {
-      // DEFAULT: SOUND ON
-      this.isMuted = false;
+      // FIRST VISIT: SOUND OFF
+      this.isMuted = true;
     } else {
-      // Restore user's preference
-      this.isMuted = savedSoundPreference === "false";
+      // Restore user's saved preference
+      // "true" = sound ON
+      // "false" = sound OFF
+      this.isMuted = savedSoundPreference !== "true";
     }
 
     // Create audio elements
@@ -41,7 +44,7 @@ class SoundFX {
     this.turnonAudio = new Audio(turnonSoundFile);
     this.turnonAudio.volume = 0.4;
 
-    // Preload
+    // Preload audio
     this.hoverAudio.load();
     this.clickAudio.load();
     this.turnonAudio.load();
@@ -76,12 +79,20 @@ class SoundFX {
     window.addEventListener("keydown", unlockAudio);
   }
 
+  /**
+   * Set muted state and save preference.
+   */
   setMuted(muted) {
     this.isMuted = muted;
 
+    // Save "true" when sound is enabled
+    // Save "false" when sound is disabled
     localStorage.setItem("sound-enabled", String(!muted));
   }
 
+  /**
+   * Toggle sound on/off.
+   */
   toggleMute() {
     const wasMuted = this.isMuted;
 
@@ -96,8 +107,11 @@ class SoundFX {
     return this.isMuted;
   }
 
+  /**
+   * Play the sound when enabling audio.
+   */
   playTurnOn() {
-    if (!this.turnonAudio) return;
+    if (this.isMuted || !this.turnonAudio) return;
 
     try {
       this.turnonAudio.currentTime = 0;
@@ -112,6 +126,9 @@ class SoundFX {
     }
   }
 
+  /**
+   * Play hover sound.
+   */
   playHover() {
     if (this.isMuted || !this.hoverAudio) return;
 
@@ -128,6 +145,9 @@ class SoundFX {
     }
   }
 
+  /**
+   * Play click sound.
+   */
   playClick() {
     if (this.isMuted || !this.clickAudio) return;
 
@@ -152,7 +172,9 @@ export const soundManager = new SoundFX();
  * should trigger hover/click sounds.
  */
 function isInteractiveElement(target) {
-  if (!target || !(target instanceof Element)) return false;
+  if (!target || !(target instanceof Element)) {
+    return false;
+  }
 
   const selector =
     'button, a, input, textarea, select, [role="button"], [tabindex]:not([tabindex="-1"]), .interactive-sound, .group';
@@ -170,6 +192,9 @@ export function useSoundEffects() {
       : true
   );
 
+  /**
+   * Handle mouse hover.
+   */
   const handleMouseOver = (e) => {
     const interactiveTarget = isInteractiveElement(e.target);
 
@@ -178,10 +203,14 @@ export function useSoundEffects() {
       soundManager.lastHoverTarget !== interactiveTarget
     ) {
       soundManager.lastHoverTarget = interactiveTarget;
+
       soundManager.playHover();
     }
   };
 
+  /**
+   * Handle mouse leaving an interactive element.
+   */
   const handleMouseOut = (e) => {
     const interactiveTarget = isInteractiveElement(e.target);
 
@@ -195,8 +224,14 @@ export function useSoundEffects() {
     }
   };
 
+  /**
+   * Handle clicks on interactive elements.
+   */
   const handleClick = (e) => {
-    if (e.target.closest(".sound-toggle")) return;
+    // Don't play click sound when clicking the sound toggle itself
+    if (e.target.closest(".sound-toggle")) {
+      return;
+    }
 
     const interactiveTarget = isInteractiveElement(e.target);
 
@@ -205,6 +240,9 @@ export function useSoundEffects() {
     }
   };
 
+  /**
+   * Toggle sound on/off.
+   */
   const toggleMute = () => {
     const newMutedState = soundManager.toggleMute();
 

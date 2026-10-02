@@ -47,7 +47,7 @@ export function Sidebar({ activeSection, onNavClick, isMuted, toggleMute }) {
         </div>
 
         {/* Numbered Navigation Links */}
-        <nav className="mt-10 flex flex-col space-y-1.5 font-mono text-xs">
+        <nav className="border-t border-slate-800/80 pt-6 mt-9 flex flex-col space-y-1.5 font-mono text-xs">
           {navItems.map((item) => {
             const isActive = activeSection === item.id;
             return (
